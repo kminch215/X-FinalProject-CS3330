@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 
-import edu.mu.model.FlightInformation;
-import edu.mu.model.FlightListModel;
-import edu.mu.view.FlightListView;
+import model.FlightInformation;
+import model.FlightListModel;
+import view.FlightListView;
 
 public class FlightListController {
 

@@ -28,6 +28,8 @@ public class FlightListController {
 	}
 	
 	public void addDepartureAndArrivalFilterOptions() {
+		flightView.addDepartureFilterItems("all");
+		flightView.addArrivalFilterItems("all");
 		for(FlightInformation flight : flightModel.getFlightModel()) {
 			flightView.addDepartureFilterItems(flight.getDepartureLocation());
 			flightView.addArrivalFilterItems(flight.getArrivalLocation());
@@ -43,11 +45,13 @@ public class FlightListController {
 	
 	public ArrayList<FlightInformation> displaySelectedFlights(String departure, String arrival) {
 		ArrayList<FlightInformation> filteredFlights = new ArrayList<FlightInformation>();
-		if(departure.equals("no selection") && arrival.equals("no selection")) {
-			JOptionPane.showMessageDialog(null, "No filter specified!");
-	        return filteredFlights;
+		if(departure.equals("all") && arrival.equals("all")) {
+			for(FlightInformation flight : flightModel.getFlightModel()) {
+				filteredFlights.add(flight);
+			}
+			return filteredFlights;
 		}
-		else if (departure.equals("no selection")) {
+		else if (departure.equals("all")) {
 			for(FlightInformation flight : flightModel.getFlightModel()) {
 				if(flight.getArrivalLocation().equals(arrival))
 				{
@@ -56,7 +60,7 @@ public class FlightListController {
 			}
 			return filteredFlights;
 		}
-		else if (arrival.equals("no selection")) {
+		else if (arrival.equals("all")) {
 			for(FlightInformation flight : flightModel.getFlightModel()) {
 				if(flight.getDepartureLocation().equals(departure))
 				{

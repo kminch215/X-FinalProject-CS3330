@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
-import edu.mu.model.FlightInformation;
+import model.FlightInformation;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;

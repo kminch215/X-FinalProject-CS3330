@@ -94,7 +94,7 @@ public class FlightListView extends JFrame {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         flightTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
      
-        selectFlight = new JButton("Select Flights");
+        selectFlight = new JButton("Select Flight");
         selectFlight.setLocation(0, 331);
         selectFlight.setSize(500, 30);
         

@@ -62,11 +62,4 @@ public class FlightListModel {
     	return true;
 	}
 	
-	public boolean addFlight(FlightInformation flight) {
-		if(!flightModel.contains(flight)) {
-			flightModel.add(flight);
-			return true;
-		}
-		return false;
-	}
 }

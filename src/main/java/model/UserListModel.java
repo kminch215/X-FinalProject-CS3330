@@ -18,5 +18,10 @@ public class UserListModel {
 	public void setUserList(ArrayList<UserInformation> userList) {
 		this.userList = userList;
 	}
+
+	public void saveUser(UserInformation user) {
+        	userList.add(user);
+        	System.out.println("User registered successfully!");
+    }
 	
 }

@@ -23,5 +23,23 @@ public class UserListModel {
         	userList.add(user);
         	System.out.println("User registered successfully!");
     }
+
+	public UserInformation getUserByUsername(String username) {
+        for (UserInformation user : userList) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null; 
+    }
+    
+    	public UserInformation authenticateUser(String username, String password) {
+        	for (UserInformation user : userList) {
+            	if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                	return user; // If Successful
+            	}
+        }
+        return null; // If Fail
+    }
 	
 }

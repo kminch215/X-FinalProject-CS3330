@@ -1,60 +1,39 @@
-package controller;
-
-import model.UserListModel;
-import view.UserLoginView;
-
-public class UserLoginController {
-	
-	private UserLoginView loginView;
-	private UserListModel loginModel;
-	private UserInformation currentUser;
-	private static UserLoginController instance;
-	
-	
-	public UserLoginController() {
-		super();
-		this.loginView = new UserLoginView();
-		this.loginModel = new UserListModel();
-	}
-
-	public static UserLoginController getInstance() {
-        if (instance == null) {
-            instance = new UserLoginController();
-        }
-        return instance;
+// UserDashboardController.java
+public class UserDashboardController {
+    private UserDashboardView dashboardView;
+    private UserDashboard dashboardModel;
+    
+    public UserDashboardController(UserInformation user) {
+        this.dashboardModel = new UserDashboard(user.getUserID());
+        dashboardView = new UserDashboardView();
     }
     
-    public void userLogin(String username, String password) {
-        if (validateInput(username, password)) {
-            UserInformation user = loginModel.authenticateUser(username, password);
-            if (user != null) {
-                // Login successful
-                currentUser = user;
-                loginView.displaySuccessMessage("Login successful.");
-            } else {
-                // Login failed
-                loginView.displayErrorMessage("Invalid username or password.");
-            }
-        } else {
-            loginView.displayErrorMessage("Invalid input. Please provide username and password.");
-        }
+    public void displayDashboard() {
+        loadUserData();
+        
+        // Display user dashboard
+        dashboardView.displayUserProfile(dashboardModel.getUserID());
+        dashboardView.displayCurrentTickets();
+        dashboardView.displayTicketHistory();
     }
     
-    public void logout() {
-        currentUser = null;
-        // Redirect to login page
+    private void loadUserData() {
+        ArrayList<ReceiptInformation> purchaseHistory = new ArrayList<>();
+        dashboardModel.setPurchaseHistory(purchaseHistory);
     }
     
-    private boolean validateInput(String username, String password) {
-        return !username.isEmpty() && !password.isEmpty();
+    public void viewTicketDetails(int ticketID) {
+        System.out.println("Ticket Details:");
+        System.out.println("Ticket ID: " + ticketID);
+        System.out.println("Flight Name: " + dashboardModel.getFlightName(ticketID));
+        System.out.println("Date: " + dashboardModel.getFlightDate(ticketID));
+        System.out.println("Price: " + dashboardModel.getFlightPrice(ticketID));
     }
     
-    public boolean isLoggedIn() {
-        return currentUser != null;
+    public void cancelTicket(int ticketID) {
+        dashboardModel.removeTicket(ticketID);
+        System.out.println("Ticket with ID " + ticketID + " cancelled successfully.");
+        displayDashboard();
     }
     
-    public UserInformation getCurrentUser() {
-        return currentUser;
-    }
-	
 }

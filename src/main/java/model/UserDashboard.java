@@ -10,9 +10,19 @@ public class UserDashboard {
 	public UserDashboard(UserInformation user) {
 		super();
 		this.user = user;
-		//this.purchaseHistory = purchaseHistory;
-		//use another class to load the purchaseHistory from another method
+		purchaseHistory = new ArrayList<>();
+		
 	}
 	
-	
+	public int getUserID() {
+        return userID;
+    }
+    
+    public void addPurchase(ReceiptInformation receipt) {
+        purchaseHistory.add(receipt);
+    }
+    
+    public ArrayList<ReceiptInformation> getPurchaseHistory() {
+        return purchaseHistory;
+    }
 }

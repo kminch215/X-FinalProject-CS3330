@@ -2,6 +2,9 @@ package view;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +28,7 @@ public class SeatSelectionView extends JFrame{
 	private JTable seatTable;
 	private JButton selectSeat;
 	private JButton backButton;
+	private ArrayList<Integer> selectedSeatNumbers;
 
 	
 	public SeatSelectionView() {
@@ -45,6 +50,7 @@ public class SeatSelectionView extends JFrame{
         // Create table model for available seats
  		model = new DefaultTableModel();
         seatTable = new JTable(model);
+        seatTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
          
          // Add columns to the table model
          model.addColumn("Seat Number");
@@ -56,6 +62,8 @@ public class SeatSelectionView extends JFrame{
          centerRenderer.setHorizontalAlignment(JLabel.CENTER);
          seatTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
       
+         selectedSeatNumbers = new ArrayList<>();
+         
          selectSeat = new JButton("Select Seat");
          selectSeat.setLocation(0, 333);
          selectSeat.setSize(484, 30);
@@ -72,6 +80,8 @@ public class SeatSelectionView extends JFrame{
          contentPanel.add(scrollPane);
          contentPanel.add(selectSeat);
          contentPanel.add(backButton);
+         
+//         seatTable.addMouseListener(new SeatSelectionListener());
 
 	}
 	
@@ -91,10 +101,13 @@ public class SeatSelectionView extends JFrame{
 		}
 	}
 	
-	// TODO: make it so that a user can select multiple seats at once
-	public int getSelectedSeatNumber() {
-		int rowNumber = seatTable.getSelectedRow();
-		return (int) model.getValueAt(rowNumber, 0);
+	public int[] getSelectedSeatNumbers() {
+		int[] selectedRows = seatTable.getSelectedRows();
+		int[] selectedSeatNumbers = new int[selectedRows.length];
+		for(int i=0; i<selectedRows.length; i++) {
+			selectedSeatNumbers[i] = (int) model.getValueAt(selectedRows[i], 0);
+		}
+		return selectedSeatNumbers;
 	}
 	
 	public void addActionListenerToSelectSeatButton(ActionListener listener) {
@@ -103,6 +116,21 @@ public class SeatSelectionView extends JFrame{
 	
 	public void addActionListenerToBackButton(ActionListener listener) {
 		backButton.addActionListener(listener);
+	}
+	
+	public class SeatSelectionListener extends MouseAdapter{
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			int row = seatTable.rowAtPoint(e.getPoint());
+			int seatNumber = (int) model.getValueAt(row, 0);
+			if(selectedSeatNumbers.contains(seatNumber)) {
+				selectedSeatNumbers.remove(Integer.valueOf(seatNumber));
+			}
+			else {
+				selectedSeatNumbers.add(seatNumber);
+			}
+			seatTable.changeSelection(row, 0, false, false);
+		}
 	}
 	
 	public void clearSeatTable() {

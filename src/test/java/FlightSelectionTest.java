@@ -1,28 +1,19 @@
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
-import javax.swing.JOptionPane;
-
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.Mockito;
 
 import controller.FlightListController;
-import controller.FlightListController.ActionListenerSelectFlight;
-import controller.SeatSelectionController;
 import model.FlightInformation;
 import model.FlightListModel;
-import view.FlightListView;
 
 class FlightSelectionTest {
 
@@ -96,4 +87,8 @@ class FlightSelectionTest {
 //        // Verify that the setVisible(true) method is called on the mocked FlightListView
 //        verify(flightViewMock).setVisible(true);
 //    }
+
 }
+
+
+

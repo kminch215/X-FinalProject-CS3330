@@ -7,13 +7,29 @@ import java.util.Scanner;
 
 public class SeatListModel {
 
-	private ArrayList<SeatInformation> seatModel;
-	private final static String seatInformationFile = "seatInformationFile.csv";
+//	private ArrayList<SeatInformation> seatModel;
+	private final static String seatInformationFile = "seatInformationFile.csv";	
+	private static SeatListModel mInstance;
+    private ArrayList<SeatInformation> seatModel = null;
+	
+	public static SeatListModel getInstance() {
+        if(mInstance == null)
+            mInstance = new SeatListModel();
 
-	public SeatListModel() {
-		super();
-		this.seatModel = new ArrayList<SeatInformation>();
-	}
+        return mInstance;
+    }
+	
+	 private SeatListModel() {
+		seatModel = new ArrayList<SeatInformation>();
+		initializeSeats();
+      }
+
+//	public SeatListModel(int flightNumber) {
+//		super();
+//		currentFlightNumber = flightNumber;
+//		this.seatModel = new ArrayList<SeatInformation>(currentFlightNumber);
+//	
+//	}
 
 	public ArrayList<SeatInformation> getSeatModel() {
 		return seatModel;
@@ -43,17 +59,16 @@ public class SeatListModel {
 	            int flightNumber = Integer.parseInt(parts[1]);
 	            int seatNumber = Integer.parseInt(parts[2]);
 	            
-	            if(seatClass == 1) {
+            	if(seatClass == 1) {
 	            	seat = new FirstClassSeat(flightNumber, seatNumber, 1000.00);
 	            }
 	            else if(seatClass == 2) {
 	            	seat = new EconomySeat(flightNumber, seatNumber, 300.00);
 	            }
 	            
-	            // Do something with the data, for example, print it
-	            System.out.println("FlightNumber: " + flightNumber + ", SeatNumber: " + seatNumber);
+            	System.out.println("FlightNumber: " + flightNumber + ", SeatNumber: " + seatNumber);
 	            	            
-	            seatModel.add(seat);
+	            seatModel.add(seat); 
 	        }
 	        scanner.close();
 	    } catch (FileNotFoundException e) {

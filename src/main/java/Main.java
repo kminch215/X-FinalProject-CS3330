@@ -1,6 +1,7 @@
 import javax.swing.SwingUtilities;
 
 import controller.FlightListController;
+import controller.PaymentController;
 
 public class Main {
 
@@ -8,8 +9,9 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				FlightListController flightController = new FlightListController();
-				flightController.initiate();
+				PaymentController paymentController = new PaymentController();
+				
+				paymentController.initialize();
 			}
 		});
 		

@@ -41,12 +41,17 @@ public class SeatSelectionController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(seatView.getSelectedSeatNumber() == -1) {
+			int[] selectedSeats = seatView.getSelectedSeatNumbers();
+			if(selectedSeats.length == 0) {
 		        JOptionPane.showMessageDialog(null, "No seat selected!");
 		        return;
 			}
-			PaymentController paymentController = new PaymentController();
-			System.out.println("Selected Seat(s): " + seatView.getSelectedSeatNumber());
+			PaymentController paymentController = new PaymentController(selectedSeats);
+			System.out.println("Selected Seat(s): ");
+			for(int seatNumber : selectedSeats)
+			{
+				System.out.println(seatNumber);
+			}
 			System.out.println("Moving to payment view...");
 			seatView.setVisible(false);
 		}	

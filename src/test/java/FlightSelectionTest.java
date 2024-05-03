@@ -1,9 +1,13 @@
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.stream.Stream;
+
+import javax.swing.JOptionPane;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -11,12 +15,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.Mockito;
 
 import controller.FlightListController;
+import controller.FlightListController.ActionListenerSelectFlight;
+import controller.SeatSelectionController;
 import model.FlightInformation;
 import model.FlightListModel;
+import view.FlightListView;
 
-class SeatSelectionTest {
+class FlightSelectionTest {
 
 	private static FlightListController flightListController;
 
@@ -46,10 +54,10 @@ class SeatSelectionTest {
     private static Stream<Arguments> provideInputsForTestDisplayingFilteredFlights() {
         FlightListModel flightModel = new FlightListModel();
         flightModel.initializeFlights();
-        ArrayList<FlightInformation> actual1 = flightListController.displaySelectedFlights("all", "all");
-        ArrayList<FlightInformation> actual2 = flightListController.displaySelectedFlights("St. Louis", "all");
-        ArrayList<FlightInformation> actual3 = flightListController.displaySelectedFlights("all", "Phoenix");
-        ArrayList<FlightInformation> actual4 = flightListController.displaySelectedFlights("Boston", "Kansas City");
+        ArrayList<FlightInformation> actual1 = flightListController.getFilteredFlights("all", "all");
+        ArrayList<FlightInformation> actual2 = flightListController.getFilteredFlights("St. Louis", "all");
+        ArrayList<FlightInformation> actual3 = flightListController.getFilteredFlights("all", "Phoenix");
+        ArrayList<FlightInformation> actual4 = flightListController.getFilteredFlights("Boston", "Kansas City");
         
         LocalDate date2 = LocalDate.of(2024, 8, 24);
         LocalDate date3 = LocalDate.of(2024, 7, 6);
@@ -70,4 +78,22 @@ class SeatSelectionTest {
                 Arguments.of(expected4, actual4)
         );
     }
+//  This works, but it does require adding a setter for the flight view which does not seem like a good idea  
+//    @Test
+//    public void testInitiate() {
+//        // Mock FlightListView
+//        FlightListView flightViewMock = mock(FlightListView.class);
+//
+//        // Create instance of FlightListController
+//        FlightListController flightListController = new FlightListController();
+//
+//        // Set the mocked FlightListView to the flightView field of the controller
+//        flightListController.setFlightView(flightViewMock);
+//
+//        // Call the initiate method
+//        flightListController.initiate();
+//
+//        // Verify that the setVisible(true) method is called on the mocked FlightListView
+//        verify(flightViewMock).setVisible(true);
+//    }
 }

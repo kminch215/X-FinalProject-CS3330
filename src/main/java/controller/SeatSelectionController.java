@@ -10,6 +10,10 @@ import model.SeatInformation;
 import model.SeatListModel;
 import view.SeatSelectionView;
 
+/**
+ * @author Samantha Whitaker
+ */
+
 public class SeatSelectionController {
 
 	private SeatSelectionView seatView;
@@ -28,6 +32,11 @@ public class SeatSelectionController {
 
 	}
 	
+	/**
+	 * This method displays available seats for a given flight number to the user.
+	 * @param seats
+	 * @param flightNumber
+	 */
 	public void displaySeats(ArrayList<SeatInformation> seats, int flightNumber) {
 		seatView.clearSeatTable();
 		for(SeatInformation seat : seats) {
@@ -37,8 +46,13 @@ public class SeatSelectionController {
 		}
 	}
 	
+
 	public class ActionListenerSelectSeat implements ActionListener {
 
+		/**
+		 * This method passes an int[] of user-selected seats to the PaymentController, prints the selected seats to console,
+		 * and sets the SeatView to invisible.
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int[] selectedSeats = seatView.getSelectedSeatNumbers();
@@ -46,6 +60,7 @@ public class SeatSelectionController {
 		        JOptionPane.showMessageDialog(null, "No seat selected!");
 		        return;
 			}
+			
 			PaymentController paymentController = new PaymentController(selectedSeats);
 			System.out.println("Selected Seat(s): ");
 			for(int seatNumber : selectedSeats)
@@ -59,6 +74,10 @@ public class SeatSelectionController {
 	
 	public class ActionListenerBackToFlightList implements ActionListener {
 
+		/**
+		 * This method creates a new instance of the FlightListController and returns the user to the FlightView
+		 * from the SeatSelectionView.
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			FlightListController flightListController = new FlightListController();
@@ -67,5 +86,6 @@ public class SeatSelectionController {
 			seatView.setVisible(false);
 		}	
 	}
+	
 	
 }

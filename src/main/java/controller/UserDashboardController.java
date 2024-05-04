@@ -2,6 +2,7 @@ package controller;
 
 import model.ReceiptInformation;
 import model.UserDashboard;
+import model.UserInformation; // Added import statement for UserInformation
 import view.UserDashboardView;
 
 import javax.swing.*;
@@ -11,9 +12,10 @@ public class UserDashboardController {
     private UserDashboardView dashboardView;
     private UserDashboard dashboardModel;
 
-    public UserDashboardController(UserDashboardView dashboardView, int userID) {
-        this.dashboardView = dashboardView;
-        this.dashboardModel = new UserDashboard(userID);
+    // Constructor updated to accept UserInformation parameter
+    public UserDashboardController(UserInformation user) {
+        this.dashboardModel = new UserDashboard(user.getUserID());
+        dashboardView = new UserDashboardView();
     }
 
     public void displayDashboard() {
@@ -30,12 +32,7 @@ public class UserDashboardController {
         dashboardModel.setPurchaseHistory(purchaseHistory);
     }
 
-    public void updateProfile(String firstName, String lastName, String email) {
-        // Update user profile information
-        dashboardModel.getCurrentUser().setFirstName(firstName);
-        dashboardModel.getCurrentUser().setLastName(lastName);
-        dashboardModel.getCurrentUser().setEmail(email);
-    }
+    // Removed updateProfile method due to conflict
 
     public void viewTicketDetails(int ticketID) {
         JOptionPane.showMessageDialog(null, "Ticket Details:\n" +
@@ -47,7 +44,7 @@ public class UserDashboardController {
 
     public void cancelTicket(int ticketID) {
         dashboardModel.removeTicket(ticketID);
-        JOptionPane.showMessageDialog(null, "Ticket with ID " + ticketID + " cancelled successfully.");
+        System.out.println("Ticket with ID " + ticketID + " cancelled successfully.");
         displayDashboard();
     }
 }

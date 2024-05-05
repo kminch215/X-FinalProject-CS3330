@@ -25,7 +25,6 @@ public class UserDashboardView extends JFrame {
         ticketHistoryLabel = new JLabel();
         add(ticketHistoryLabel);
         
-        setVisible(true);
     }
     
     public void displayUserProfile(int userID) {

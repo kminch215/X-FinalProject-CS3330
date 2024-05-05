@@ -10,7 +10,7 @@ public class PaymentController {
 
     private PaymentView paymentView;
 
-    public PaymentController() {
+    public PaymentController(int[] seats) {
         this.paymentView = new PaymentView();
         this.paymentView.setVisible(true);
 

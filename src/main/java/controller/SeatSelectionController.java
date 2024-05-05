@@ -28,11 +28,8 @@ public class SeatSelectionController {
 		seatView.setVisible(true);
 		seatView.addActionListenerToSelectSeatButton(new ActionListenerSelectSeat());
 		seatView.addActionListenerToBackButton(new ActionListenerBackToFlightList());
-
-
 	}
 	
-
 	/**
 	 * This method displays available seats for a given flight number to the user.
 	 * @param seats
@@ -88,5 +85,5 @@ public class SeatSelectionController {
 		}	
 	}
 	
-	
+}
 }

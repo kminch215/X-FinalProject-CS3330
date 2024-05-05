@@ -19,8 +19,10 @@ public class UserListModel {
     }
 
     public void saveUser(UserInformation user) {
+        System.out.println("Saving New User!");
+
+        System.out.println("Location 3" + user.getPassword());
         userList.add(user);
-        JOptionPane.showMessageDialog(null, "User registered successfully!");
     }
 
     public UserInformation getUserByUsername(String username) {
@@ -33,10 +35,20 @@ public class UserListModel {
     }
 
     public UserInformation authenticateUser(String username, String password) {
-        for (UserInformation user : userList) {
+        System.out.println("Checkibng to see if user exists...");
+        System.out.println(username);
+        System.out.println(password);
+        for (UserInformation user : this.userList) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user; // If Successful
             }
+        }
+        System.out.println("No User Found, here is a list of valid users:");
+        for(UserInformation i : this.userList){
+            System.out.println("-------------");
+            System.out.println("Username: " + i.getUsername());
+            System.out.println("Password:" + i.getPassword() );
+            System.out.println("-------------");
         }
         return null; // If Fail
     }

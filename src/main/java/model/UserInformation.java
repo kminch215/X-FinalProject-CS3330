@@ -36,6 +36,7 @@ public class UserInformation {
     }
 
     public String getPassword() {
+
         return password;
     }
 

@@ -70,6 +70,8 @@ public class PaymentController {
 
     private void processPayment(String cardNumber, String cvvNumber, String expirationMonth, String expirationYear) {
         System.out.println("Payment processed successfully!");
+        paymentView.setVisible(false);
+        ReceiptController receiptController = new ReceiptController();
     }
     //for later
     public String hash(String cardNumber) {

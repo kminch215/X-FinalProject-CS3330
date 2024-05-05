@@ -93,5 +93,17 @@ public class SeatListModel {
 		}
 		return false;
 	}
+	/**
+	 * This method removes the provided seat from the ArrayList of available seats.
+	 * @param seat
+	 * @return boolean
+	 */
+	public boolean removeSeat(SeatInformation seat) {
+		if(!seatModel.contains(seat)) {
+			seatModel.remove(seat);
+			return true;
+		}
+		return false;
+	}
 	
 }

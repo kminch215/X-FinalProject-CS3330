@@ -21,6 +21,7 @@ public class FlightListController {
 		this.flightView = new FlightListView();
 		this.flightModel = new FlightListModel();
 		flightModel.initializeFlights();
+		initiate();
 		displayFlights(flightModel.getFlightModel());
 		addDepartureAndArrivalFilterOptions();
 		flightView.addActionListenerToSelectFlightButton(new ActionListenerSelectFlight());

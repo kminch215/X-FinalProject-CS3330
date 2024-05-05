@@ -17,6 +17,7 @@ public class ReceiptController {
 		super();
 		this.receiptView = new ReceiptView();
 		this.receiptModel = new ReceiptListModel();
+		receiptView.setVisible(true);
 		
 		displayReceipts(receiptModel.getReceiptList());
 		receiptView.setVisible(true);

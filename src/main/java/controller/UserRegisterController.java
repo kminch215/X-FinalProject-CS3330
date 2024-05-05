@@ -4,7 +4,6 @@ import model.UserInformation;
 import model.UserListModel;
 import view.UserRegisterView;
 import controller.UserLoginController;
-import javafx.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 
@@ -21,6 +20,7 @@ public class UserRegisterController {
 
         ActionListener actionListenerRegisterButton = new ActionListenerRegisterButton();
         registerView.addActionListenerToRegisterButton(actionListenerRegisterButton);
+        registerView.setVisible(true);
 
     }
 
@@ -46,7 +46,7 @@ public class UserRegisterController {
             // Save the user
             userModel.saveUser(newUser);
 
-
+            registerView.setVisible(false);
             UserLoginController userLoginController = new UserLoginController(userModel);
             //sets user login page visible
             userLoginController.initiate();

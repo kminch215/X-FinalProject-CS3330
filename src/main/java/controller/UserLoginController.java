@@ -4,7 +4,6 @@ import model.UserInformation;
 import model.UserListModel;
 import view.UserLoginView;
 import controller.UserLoginController;
-import javafx.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
@@ -37,7 +36,8 @@ public class UserLoginController {
                 //Hide Login View -> User Dashboard 
                 loginView.setVisible(false);    
     
-                UserDashboardController userDashboardController = new UserDashboardController(user);
+                //UserDashboardController userDashboardController = new UserDashboardController(user);
+                FlightListController flightController = new FlightListController();
 
                 JOptionPane.showMessageDialog(null, "Login successful.");
             } else {

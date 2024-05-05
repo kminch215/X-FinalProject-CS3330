@@ -43,6 +43,7 @@ public class SeatSelectionController {
 				seatView.addSeatInformationToView(seat);
 			}
 		}
+	}
 
 
 	public class ActionListenerSelectSeat implements ActionListener {
@@ -85,5 +86,4 @@ public class SeatSelectionController {
 		}	
 	}
 	
-}
 }

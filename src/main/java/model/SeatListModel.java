@@ -5,9 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class uses a Singleton design pattern to allow access to the list of available seats.
+ * @author Samantha Whitaker
+ */
+
 public class SeatListModel {
 
-//	private ArrayList<SeatInformation> seatModel;
 	private final static String seatInformationFile = "seatInformationFile.csv";	
 	private static SeatListModel mInstance;
     private ArrayList<SeatInformation> seatModel = null;
@@ -24,13 +28,6 @@ public class SeatListModel {
 		initializeSeats();
       }
 
-//	public SeatListModel(int flightNumber) {
-//		super();
-//		currentFlightNumber = flightNumber;
-//		this.seatModel = new ArrayList<SeatInformation>(currentFlightNumber);
-//	
-//	}
-
 	public ArrayList<SeatInformation> getSeatModel() {
 		return seatModel;
 	}
@@ -38,7 +35,11 @@ public class SeatListModel {
 	public void setSeatModel(ArrayList<SeatInformation> seatModel) {
 		this.seatModel = seatModel;
 	}
-
+	/**
+	 * This method initializes the seats by reading them in from the provided file and creating a new seat 
+	 * depending on whether the seat is of type Economy or First Class.
+	 * @return boolean
+	 */
 	public boolean initializeSeats() {
 		SeatInformation seat = null;
     	try {
@@ -80,6 +81,11 @@ public class SeatListModel {
     	return true;
 	}
 	
+	/**
+	 * This method adds the provided seat to the ArrayList of available seats.
+	 * @param seat
+	 * @return boolean
+	 */
 	public boolean addSeat(SeatInformation seat) {
 		if(!seatModel.contains(seat)) {
 			seatModel.add(seat);

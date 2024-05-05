@@ -19,10 +19,6 @@ public class FlightListModel {
 	public ArrayList<FlightInformation> getFlightModel() {
 		return flightModel;
 	}
-
-	public void setFlightModel(ArrayList<FlightInformation> flightModel) {
-		this.flightModel = flightModel;
-	}
 	
 	public boolean initializeFlights() {
 		FlightInformation flight = null;

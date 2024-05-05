@@ -43,7 +43,7 @@ public class FlightListController {
 		}
 	}
 	
-	public ArrayList<FlightInformation> displaySelectedFlights(String departure, String arrival) {
+	public ArrayList<FlightInformation> getFilteredFlights(String departure, String arrival) {
 		ArrayList<FlightInformation> filteredFlights = new ArrayList<FlightInformation>();
 		if(departure.equals("all") && arrival.equals("all")) {
 			for(FlightInformation flight : flightModel.getFlightModel()) {
@@ -100,7 +100,7 @@ public class FlightListController {
 			String departure = flightView.getSelectedDeparture();
 			String arrival = flightView.getSelectedArrival();
 			
-			ArrayList<FlightInformation> filteredFlights = displaySelectedFlights(departure, arrival);
+			ArrayList<FlightInformation> filteredFlights = getFilteredFlights(departure, arrival);
 			if(filteredFlights.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "No flights match this filter combination!");
 		        return;

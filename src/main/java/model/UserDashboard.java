@@ -13,11 +13,12 @@ public class UserDashboard {
         UserDashboard.userID = userID;
         UserDashboard.purchaseHistory = new ArrayList<>();
     }
-
+    public static void setUserID(int userID) {
+    	UserDashboard.userID = userID;
+    }
     public static int getUserID() {
         return userID;
     }
-
     public static ArrayList<ReceiptInformation> getPurchaseHistory() {
         return purchaseHistory;
     }

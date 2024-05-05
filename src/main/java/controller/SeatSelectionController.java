@@ -32,11 +32,13 @@ public class SeatSelectionController {
 
 	}
 	
+
 	/**
 	 * This method displays available seats for a given flight number to the user.
 	 * @param seats
 	 * @param flightNumber
 	 */
+
 	public void displaySeats(ArrayList<SeatInformation> seats, int flightNumber) {
 		seatView.clearSeatTable();
 		for(SeatInformation seat : seats) {
@@ -44,8 +46,7 @@ public class SeatSelectionController {
 				seatView.addSeatInformationToView(seat);
 			}
 		}
-	}
-	
+
 
 	public class ActionListenerSelectSeat implements ActionListener {
 

@@ -32,7 +32,6 @@ public class SeatSelectionView extends JFrame{
 	private JButton backButton;
 	private ArrayList<Integer> selectedSeatNumbers;
 
-	
 	public SeatSelectionView() {
 		setTitle("Selection View");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +51,7 @@ public class SeatSelectionView extends JFrame{
         // Create table model for available seats
  		model = new DefaultTableModel();
         seatTable = new JTable(model);
+
         seatTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
          
          // Add columns to the table model
@@ -64,8 +64,8 @@ public class SeatSelectionView extends JFrame{
          centerRenderer.setHorizontalAlignment(JLabel.CENTER);
          seatTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
       
+
          selectedSeatNumbers = new ArrayList<>();
-         
          selectSeat = new JButton("Select Seat");
          selectSeat.setLocation(0, 333);
          selectSeat.setSize(484, 30);
@@ -84,12 +84,12 @@ public class SeatSelectionView extends JFrame{
          contentPanel.add(backButton);
          
 	}
+  
 	/**
 	 * This method adds a seat to the user view after determining whether the seat is Economy or First Class.
 	 * The seat number, seat type, and seat price are displayed to the user.
 	 * @param seat
 	 */
-	
 	public void addSeatInformationToView(SeatInformation seat) {
 		if(seat instanceof EconomySeat) {
 			EconomySeat econSeat = (EconomySeat)seat;
@@ -139,4 +139,5 @@ public class SeatSelectionView extends JFrame{
 	public JTable getSeatTable() {
 		return seatTable;
 	}
+
 }

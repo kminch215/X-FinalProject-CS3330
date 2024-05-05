@@ -14,9 +14,9 @@ public class UserDashboardController {
     private UserDashboard dashboardModel;
     private UserListModel userListModel;
 
-    public UserDashboardController(UserInformation user) {
+    public UserDashboardController() {
         this.dashboardView = new UserDashboardView(); 
-        this.dashboardModel = new UserDashboard(user.getUserID());
+        this.dashboardModel = new UserDashboard(UserDashboard.getUserID());
         this.dashboardView.setVisible(true);
     }
 

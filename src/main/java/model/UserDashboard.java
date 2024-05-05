@@ -8,16 +8,16 @@ public class UserDashboard {
 	private static int userID;
     private static ArrayList<ReceiptInformation> purchaseHistory;
 
-    // Private constructor to prevent instantiation from outside
     public UserDashboard(int userID) {
         UserDashboard.userID = userID;
         UserDashboard.purchaseHistory = new ArrayList<>();
     }
-
+    public static void setUserID(int userID) {
+    	UserDashboard.userID = userID;
+    }
     public static int getUserID() {
         return userID;
     }
-
     public static ArrayList<ReceiptInformation> getPurchaseHistory() {
         return purchaseHistory;
     }

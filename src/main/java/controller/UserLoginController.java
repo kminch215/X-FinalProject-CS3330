@@ -1,5 +1,6 @@
 package controller;
 
+import model.UserDashboard;
 import model.UserInformation;
 import model.UserListModel;
 import view.UserLoginView;
@@ -33,6 +34,7 @@ public class UserLoginController {
             if (user != null) {
                 // Login successful
                 currentUser = user;
+                UserDashboard userDashboard = new UserDashboard(user.getUserID());
                 //Hide Login View -> User Dashboard 
                 loginView.setVisible(false);    
     

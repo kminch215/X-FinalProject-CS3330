@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import model.PaymentInformation;
 import model.PaymentListModel;
+
 import model.ReceiptInformation;
 import model.SeatInformation;
 import model.UserDashboard;

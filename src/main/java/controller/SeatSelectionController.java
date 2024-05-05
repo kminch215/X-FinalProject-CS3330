@@ -44,6 +44,20 @@ public class SeatSelectionController {
 			}
 		}
 	}
+	
+	public ArrayList<SeatInformation> intArrayToArrayList(int[] seats){
+		ArrayList<SeatInformation> convertedSeats = new ArrayList<>();
+		ArrayList<SeatInformation> seatList = seatModel.getSeatModel();
+		for(int seatNum : seats) {
+			for(SeatInformation seat : seatList) {
+				if(seat.getSeatNumber() == seatNum) {
+					convertedSeats.add(seat);
+					break;
+				}
+			}
+		}
+		return convertedSeats;
+	}
 
 
 	public class ActionListenerSelectSeat implements ActionListener {
@@ -59,8 +73,8 @@ public class SeatSelectionController {
 		        JOptionPane.showMessageDialog(null, "No seat selected!");
 		        return;
 			}
-			
-			PaymentController paymentController = new PaymentController(selectedSeats);
+			ArrayList<SeatInformation> seats = intArrayToArrayList(selectedSeats);
+			PaymentController paymentController = new PaymentController(seats);
 			System.out.println("Selected Seat(s): ");
 			for(int seatNumber : selectedSeats)
 			{

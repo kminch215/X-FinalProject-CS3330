@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -10,10 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import model.ReceiptInformation;
+import javax.swing.JButton;
 
 public class ReceiptView extends JFrame{
 	private JPanel contentPanel;
 	private JLabel receiptPageLabel;
+	private JButton toUserDashboard;
 	private JList<ReceiptInformation> receiptList;
 	
 	public ReceiptView() {
@@ -37,10 +40,17 @@ public class ReceiptView extends JFrame{
         receiptPageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         receiptPageLabel.setFont(new Font("Sitka Heading", Font.BOLD, 16));
         contentPanel.add(receiptPageLabel);
+        
+        toUserDashboard = new JButton("To User Dashboard");
+        toUserDashboard.setBounds(173, 259, 166, 23);
+        contentPanel.add(toUserDashboard);
 	}
 	
 	public DefaultListModel<ReceiptInformation> getReceiptList() {
 		return (DefaultListModel<ReceiptInformation>) receiptList.getModel();
 	}
-
+	
+	public void addActionListenerToSelectUserDashboardButton(ActionListener listener) {
+		toUserDashboard.addActionListener(listener);
+	}
 }

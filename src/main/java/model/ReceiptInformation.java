@@ -52,6 +52,12 @@ public class ReceiptInformation {
 		this.totalPrice = totalPrice;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Flight Number: " + flightNumber + "               Order Price: " + calculateTotal();
+	}
+	
 	public double calculateTotal() {
 		double total = 0.0;
 		for(SeatInformation seat : seats) {

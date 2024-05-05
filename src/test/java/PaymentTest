@@ -1,1 +1,23 @@
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import controller.PaymentController;
+import view.PaymentView;
 
+class PaymentTest {
+
+	@BeforeEach
+    void setUp() throws Exception {
+    	new PaymentController(null);
+    	new PaymentView();    }
+    
+    @Test
+    private static void simulateUserInput(PaymentController paymentController) {
+    	// Simulating user input for testing
+            String cardNumber = "1234123412345678";
+            String cvv = "123";
+            String expirationMonth = "12";
+            String expirationYear = "21";
+
+            paymentController.processPayment(cardNumber, cvv, expirationMonth, expirationYear);
+    }
+}

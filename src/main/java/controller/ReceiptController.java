@@ -6,6 +6,7 @@ import model.ReceiptInformation;
 import model.ReceiptListModel;
 import model.SeatInformation;
 import model.SeatListModel;
+import model.UserDashboard;
 import view.ReceiptView;
 
 public class ReceiptController {
@@ -19,12 +20,12 @@ public class ReceiptController {
 		this.receiptModel = new ReceiptListModel();
 		receiptView.setVisible(true);
 		
-		displayReceipts(receiptModel.getReceiptList());
+		displayReceipts();
 		receiptView.setVisible(true);
 	}
 	
-	public void displayReceipts(ArrayList<ReceiptInformation> receipts) {
-		for(ReceiptInformation receipt : receipts) {
+	public void displayReceipts() {
+		for(ReceiptInformation receipt : UserDashboard.getPurchaseHistory()) {
 			receiptView.getReceiptList().addElement(receipt);
 		}
 	}

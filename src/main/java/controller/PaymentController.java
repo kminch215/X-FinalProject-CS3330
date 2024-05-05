@@ -1,23 +1,29 @@
 package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import model.PaymentInformation;
 import model.PaymentListModel;
+import model.ReceiptInformation;
+import model.SeatInformation;
+import model.UserDashboard;
 import view.PaymentView;
 
 public class PaymentController {
 
     private PaymentView paymentView;
     private PaymentListModel paymentModel;
+    private ArrayList<SeatInformation> seats;
     
 
-    public PaymentController(int[] seats) {
+    public PaymentController(ArrayList<SeatInformation> seats) {
         this.paymentView = new PaymentView();
-        this.paymentView.setVisible(true);
         this.paymentModel = new PaymentListModel();
+        this.seats = seats;
+        this.paymentView.setVisible(true);
 
         this.paymentView.getSubmitButton().addActionListener(new ActionListener() {
             @Override
@@ -77,7 +83,9 @@ public class PaymentController {
     	PaymentInformation newPayment = new PaymentInformation(1, Long.parseLong(cardNumber));
     	paymentModel.getPaymentModel().add(newPayment);
         JOptionPane.showMessageDialog(null, "Payment Successful!");
-        System.out.println("Payment processed successfully!");
+        ReceiptInformation receipt = new ReceiptInformation(UserDashboard.getUserID(), seats.get(0).getFlightNumber(), seats);
+        UserDashboard.addReceipt(receipt); //This is not adding the receipe to the receipt model
+        
         paymentView.setVisible(false);
         ReceiptController receiptController = new ReceiptController();
     }

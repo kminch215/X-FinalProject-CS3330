@@ -1,3 +1,5 @@
+package controller;
+
 // UserDashboardController.java
 public class UserDashboardController {
     private UserDashboardView dashboardView;

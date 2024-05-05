@@ -1,11 +1,13 @@
 package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import model.PaymentInformation;
 import model.PaymentListModel;
+import model.SeatInformation;
 import view.PaymentView;
 
 public class PaymentController {
@@ -14,7 +16,7 @@ public class PaymentController {
     private PaymentListModel paymentModel;
     
 
-    public PaymentController(int[] seats) {
+    public PaymentController(ArrayList<SeatInformation> seats) {
         this.paymentView = new PaymentView();
         this.paymentView.setVisible(true);
         this.paymentModel = new PaymentListModel();

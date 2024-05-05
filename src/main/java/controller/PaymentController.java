@@ -3,16 +3,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
+
+import model.PaymentInformation;
 import model.PaymentListModel;
 import view.PaymentView;
 
 public class PaymentController {
 
     private PaymentView paymentView;
+    private PaymentListModel paymentModel;
+    
 
     public PaymentController(int[] seats) {
         this.paymentView = new PaymentView();
         this.paymentView.setVisible(true);
+        this.paymentModel = new PaymentListModel();
 
         this.paymentView.getSubmitButton().addActionListener(new ActionListener() {
             @Override
@@ -69,6 +74,9 @@ public class PaymentController {
     }
 
     private void processPayment(String cardNumber, String cvvNumber, String expirationMonth, String expirationYear) {
+    	PaymentInformation newPayment = new PaymentInformation(1, Long.parseLong(cardNumber));
+    	paymentModel.getPaymentModel().add(newPayment);
+        JOptionPane.showMessageDialog(null, "Payment Successful!");
         System.out.println("Payment processed successfully!");
         paymentView.setVisible(false);
         ReceiptController receiptController = new ReceiptController();

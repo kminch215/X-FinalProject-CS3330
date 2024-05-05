@@ -36,14 +36,11 @@ public class ReceiptView extends JFrame{
 		receiptPageLabel.setSize(484, 20);
         receiptPageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         receiptPageLabel.setFont(new Font("Sitka Heading", Font.BOLD, 16));
+        contentPanel.add(receiptPageLabel);
 	}
 	
 	public DefaultListModel<ReceiptInformation> getReceiptList() {
 		return (DefaultListModel<ReceiptInformation>) receiptList.getModel();
 	}
-	
-//	public void addReceiptInformationToView(ReceiptInformation receipt) {
-//			
-//		}
 
 }

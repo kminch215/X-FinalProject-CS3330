@@ -23,12 +23,8 @@ public class ReceiptController {
 	}
 	
 	public void displayReceipts(ArrayList<ReceiptInformation> receipts) {
-//		UserInformation user = new UserInformation(username, age);
-//		userModel.getUserList().add(user);
-//		
-//		userListView.getUserList().addElement(user);
 		for(ReceiptInformation receipt : receipts) {
-//			receiptView.addReceiptInformationToView(receipt);
+			receiptView.getReceiptList().addElement(receipt);
 		}
 	}
 	

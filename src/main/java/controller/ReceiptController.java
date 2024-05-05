@@ -1,7 +1,12 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
+import controller.FlightListController.ActionListenerSelectFlight;
 import model.ReceiptInformation;
 import model.ReceiptListModel;
 import model.SeatInformation;
@@ -18,6 +23,7 @@ public class ReceiptController {
 		super();
 		this.receiptView = new ReceiptView();
 		this.receiptModel = new ReceiptListModel();
+		receiptView.addActionListenerToSelectUserDashboardButton(new ActionListenerToUserDashboard());
 		receiptView.setVisible(true);
 		
 		displayReceipts();
@@ -59,5 +65,15 @@ public class ReceiptController {
 				SeatListModel.getInstance().addSeat(seat);
 			}	
 		}
+	}
+	
+	public class ActionListenerToUserDashboard implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			receiptView.setVisible(false);
+			UserDashboardController userDashboardController = new UserDashboardController();
+		}
+		
 	}
 }

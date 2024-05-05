@@ -1,44 +1,43 @@
 package model;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import javax.swing.*;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class UserListModel {
+    private ArrayList<UserInformation> userList;
 
-class UserListModelTest {
-    private UserListModel userListModel;
-
-    @BeforeEach
-    void setUp() {
-        userListModel = new UserListModel();
-        UserInformation user1 = new UserInformation("testuser1", "password1", "John", "Doe", "john.doe@example.com");
-        UserInformation user2 = new UserInformation("testuser2", "password2", "Jane", "Smith", "jane.smith@example.com");
-        userListModel.saveUser(user1);
-        userListModel.saveUser(user2);
+    public UserListModel() {
+        this.userList = new ArrayList<>();
     }
 
-    @Test
-    void testSaveUser() {
-        assertEquals(2, userListModel.getUserList().size());
+    public ArrayList<UserInformation> getUserList() {
+        return userList;
     }
 
-    @Test
-    void testGetUserByUsername() {
-        UserInformation user = userListModel.getUserByUsername("testuser1");
-        assertNotNull(user);
-        assertEquals("testuser1", user.getUsername());
+    public void setUserList(ArrayList<UserInformation> userList) {
+        this.userList = userList;
     }
 
-    @Test
-    void testAuthenticateUserSuccess() {
-        UserInformation user = userListModel.authenticateUser("testuser1", "password1");
-        assertNotNull(user);
-        assertEquals("testuser1", user.getUsername());
+    public void saveUser(UserInformation user) {
+        userList.add(user);
+        JOptionPane.showMessageDialog(null, "User registered successfully!");
     }
 
-    @Test
-    void testAuthenticateUserFail() {
-        UserInformation user = userListModel.authenticateUser("testuser1", "wrongpassword");
-        assertNull(user);
+    public UserInformation getUserByUsername(String username) {
+        for (UserInformation user : userList) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public UserInformation authenticateUser(String username, String password) {
+        for (UserInformation user : userList) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                return user; // If Successful
+            }
+        }
+        return null; // If Fail
     }
 }

@@ -11,6 +11,6 @@ public class UserDashboardController {
 	public UserDashboardController() {
 		super();
 		this.dashboardView = new UserDashboardView();
-		this.dashboardModel = new UserDashboard(null); //change this to input the userID
+//		this.dashboardModel = new UserDashboard(null); change this to input the userID
 	}
 }

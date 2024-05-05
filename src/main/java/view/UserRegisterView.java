@@ -1,8 +1,9 @@
 package view;
 
+import javax.swing.*;
+
 import controller.UserRegisterController;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,8 @@ public class UserRegisterView extends JFrame {
     private JTextField firstNameField;
     private JTextField lastNameField;
     private JTextField emailField;
-    
+    private JButton registerButton;
+
     public UserRegisterView() {
         setTitle("User Registration");
         setSize(400, 300);
@@ -45,31 +47,20 @@ public class UserRegisterView extends JFrame {
         emailField = new JTextField();
         add(emailField);
         
-        JButton registerButton = new JButton("Register");
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
-                String password = new String(passwordField.getPassword());
-                String firstName = firstNameField.getText();
-                String lastName = lastNameField.getText();
-                String email = emailField.getText();
-                
-                // Pass the user input to the controller for registration
-                UserRegisterController.getInstance().registerUser(username, password, firstName, lastName, email);
-            }
-        });
+        registerButton = new JButton("Register");
         add(registerButton);
-        
-        setVisible(true);
     }
-    
+
+    public void addActionListenerToRegisterButton(ActionListener listener){
+        registerButton.addActionListener(listener); 
+    }
     // Getter methods for testing
     public JTextField getUsernameField() {
         return usernameField;
     }
     
     public JPasswordField getPasswordField() {
+
         return passwordField;
     }
     

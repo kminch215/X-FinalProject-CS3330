@@ -3,25 +3,29 @@ package controller;
 import model.UserInformation;
 import model.UserListModel;
 import view.UserLoginView;
+import controller.UserLoginController;
+import javafx.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
+//TODO: Add current user into dashboard
+
 
 public class UserLoginController {
     private UserLoginView loginView;
     private UserListModel loginModel;
     private UserInformation currentUser;
-    private static UserLoginController instance;
+    private UserLoginController userLoginController;
 
-    public UserLoginController() {
+    public UserLoginController(UserListModel userListModel) {
         this.loginView = new UserLoginView();
-        this.loginModel = new UserListModel();
+        this.loginModel = userListModel; 
+
+        loginView.addActionListenerToLoginButton(new ActionListenerLoginButton());
     }
 
-    public static UserLoginController getInstance() {
-        if (instance == null) {
-            instance = new UserLoginController();
-        }
-        return instance;
+    public UserLoginController getInstance() {
+        return this.userLoginController;
     }
 
     public void userLogin(String username, String password) {
@@ -30,6 +34,11 @@ public class UserLoginController {
             if (user != null) {
                 // Login successful
                 currentUser = user;
+                //Hide Login View -> User Dashboard 
+                loginView.setVisible(false);    
+    
+                UserDashboardController userDashboardController = new UserDashboardController(user);
+
                 JOptionPane.showMessageDialog(null, "Login successful.");
             } else {
                 // Login failed
@@ -55,5 +64,19 @@ public class UserLoginController {
 
     public UserInformation getCurrentUser() {
         return currentUser;
+    }
+    public void initiate(){
+        loginView.setVisible(true);
+    }
+
+    public class ActionListenerLoginButton implements ActionListener {
+        
+
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            String userName = loginView.getUsernameField().getText();
+            String password = new String(loginView.getPasswordField().getPassword());
+            userLogin(userName, password);
+        }
     }
 }

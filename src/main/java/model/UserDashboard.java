@@ -5,28 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDashboard {
-    private UserInformation user;
-    private ArrayList<ReceiptInformation> purchaseHistory;
+	private static int userID;
+    private static ArrayList<ReceiptInformation> purchaseHistory;
 
-    public UserDashboard(UserInformation user) {
-        this.user = user;
-        purchaseHistory = new ArrayList<>();
+    // Private constructor to prevent instantiation from outside
+    public UserDashboard(int userID) {
+        UserDashboard.userID = userID;
+        UserDashboard.purchaseHistory = new ArrayList<>();
     }
 
-    public int getUserID() {
-        return user.getUserID();
+    public static int getUserID() {
+        return userID;
     }
 
-    public void addPurchase(ReceiptInformation receipt) {
-        purchaseHistory.add(receipt);
-    }
-
-    public ArrayList<ReceiptInformation> getPurchaseHistory() {
+    public static ArrayList<ReceiptInformation> getPurchaseHistory() {
         return purchaseHistory;
+    }
+
+    // Method to add a single receipt to the purchase history
+    public static void addReceipt(ReceiptInformation receipt) {
+        purchaseHistory.add(receipt);
     }
     
     public void setPurchaseHistory(ArrayList<ReceiptInformation> purchaseHistory) {
-        this.purchaseHistory = purchaseHistory;
+        UserDashboard.purchaseHistory = purchaseHistory;
     }
 
     public String getFlightName(int ticketID) {
@@ -79,9 +81,6 @@ public class UserDashboard {
 
     private String formatTicketHistory(ReceiptInformation receipt) {
         return "Ticket ID: " + receipt.getReceiptID() + ", Purchase Date: " + ", Total Price: " + receipt.calculateTotal();
-    }
-    public UserInformation getCurrentUser() {
-        return this.user;
     }
 
 }

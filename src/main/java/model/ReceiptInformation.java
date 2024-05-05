@@ -19,6 +19,12 @@ public class ReceiptInformation {
 		this.seats = seats;
 		this.setTotalPrice(calculateTotal());
 	}
+	public int getReceiptID() {
+		return receiptID;
+	}
+	public void setReceiptID(int receiptID) {
+		this.receiptID = receiptID;
+	}
 	public int getUserID() {
 		return userID;
 	}

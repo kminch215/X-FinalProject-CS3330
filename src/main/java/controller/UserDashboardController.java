@@ -4,16 +4,19 @@ import model.ReceiptInformation;
 import model.UserDashboard;
 import view.UserDashboardView;
 import model.UserInformation;
+import model.UserListModel;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class UserDashboardController {
     private UserDashboardView dashboardView;
     private UserDashboard dashboardModel;
+    private UserListModel userListModel;
 
-    public UserDashboardController( UserInformation userID) {
+    public UserDashboardController(UserInformation user) {
         this.dashboardView = new UserDashboardView(); 
-        this.dashboardModel = new UserDashboard(userID);
+        this.dashboardModel = new UserDashboard(user.getUserID());
         this.dashboardView.setVisible(true);
     }
 
@@ -21,7 +24,7 @@ public class UserDashboardController {
         loadUserData();
 
         // Display user dashboard
-        dashboardView.displayUserProfile(dashboardModel.getUserID());
+        dashboardView.displayUserProfile(UserDashboard.getUserID());
         dashboardView.displayCurrentTickets(dashboardModel.getCurrentTickets());
         dashboardView.displayTicketHistory(dashboardModel.getTicketHistory());
     }
@@ -33,9 +36,11 @@ public class UserDashboardController {
 
     public void updateProfile(String firstName, String lastName, String email) {
         // Update user profile information
-        dashboardModel.getCurrentUser().setFirstName(firstName);
-        dashboardModel.getCurrentUser().setLastName(lastName);
-        dashboardModel.getCurrentUser().setEmail(email);
+        for(UserInformation user : userListModel.getUserList()) {
+	        user.setFirstName(firstName);
+	        user.setLastName(lastName);
+	        user.setEmail(email);
+        }
     }
 
     public void viewTicketDetails(int ticketID) {

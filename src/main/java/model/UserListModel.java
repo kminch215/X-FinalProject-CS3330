@@ -4,19 +4,19 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class UserListModel {
-    private ArrayList<UserInformation> userList;
+    private static ArrayList<UserInformation> userList;
 
     public UserListModel() {
-        this.userList = new ArrayList<>();
+        UserListModel.userList = new ArrayList<>();
     }
 
     public ArrayList<UserInformation> getUserList() {
         return userList;
     }
 
-    public void setUserList(ArrayList<UserInformation> userList) {
-        this.userList = userList;
-    }
+//    public void setUserList(ArrayList<UserInformation> userList) {
+//        this.userList = userList;
+//    }
 
     public void saveUser(UserInformation user) {
         System.out.println("Saving New User!");

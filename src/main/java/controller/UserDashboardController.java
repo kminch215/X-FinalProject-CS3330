@@ -3,7 +3,7 @@ package controller;
 import model.ReceiptInformation;
 import model.UserDashboard;
 import view.UserDashboardView;
-
+import model.UserInformation;
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -11,9 +11,10 @@ public class UserDashboardController {
     private UserDashboardView dashboardView;
     private UserDashboard dashboardModel;
 
-    public UserDashboardController(UserDashboardView dashboardView, int userID) {
-        this.dashboardView = dashboardView;
+    public UserDashboardController( UserInformation userID) {
+        this.dashboardView = new UserDashboardView(); 
         this.dashboardModel = new UserDashboard(userID);
+        this.dashboardView.setVisible(true);
     }
 
     public void displayDashboard() {
@@ -21,8 +22,8 @@ public class UserDashboardController {
 
         // Display user dashboard
         dashboardView.displayUserProfile(dashboardModel.getUserID());
-        dashboardView.displayCurrentTickets();
-        dashboardView.displayTicketHistory();
+        dashboardView.displayCurrentTickets(dashboardModel.getCurrentTickets());
+        dashboardView.displayTicketHistory(dashboardModel.getTicketHistory());
     }
 
     private void loadUserData() {
@@ -41,7 +42,6 @@ public class UserDashboardController {
         JOptionPane.showMessageDialog(null, "Ticket Details:\n" +
                 "Ticket ID: " + ticketID + "\n" +
                 "Flight Name: " + dashboardModel.getFlightName(ticketID) + "\n" +
-                "Date: " + dashboardModel.getFlightDate(ticketID) + "\n" +
                 "Price: " + dashboardModel.getFlightPrice(ticketID));
     }
 

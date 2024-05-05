@@ -29,7 +29,7 @@ public class UserRegisterController {
             int userID = generateUserID();
 
             // Create a new user
-            UserInformation newUser = new UserInformation(username, password, firstName, lastName, email, userID);
+            UserInformation newUser = new UserInformation(userID, password, firstName, lastName, email, username);
 
             // Save the user
             userModel.saveUser(newUser);

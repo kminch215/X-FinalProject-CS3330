@@ -29,10 +29,6 @@ public class ReceiptController {
 		}
 	}
 	
-	public void bookFlight() {
-		
-	}
-	
 	public void cancelBooking(ReceiptInformation receipt) {
 		if(receiptModel.getReceiptList().contains(receipt)) {
 			ArrayList<SeatInformation> seats = receipt.getSeats();
@@ -48,5 +44,19 @@ public class ReceiptController {
 		SeatSelectionController seatController = new SeatSelectionController(flightNo);
 		receiptView.setVisible(false);
 		
+	}
+	
+	public void cancelSelectedSeat(ReceiptInformation receipt, SeatInformation seat) {
+		if(receiptModel.getReceiptList().contains(receipt)) {
+			ArrayList<SeatInformation> seats = receipt.getSeats();
+			if(seats.contains(seat)) {
+				seats.remove(seat);
+				receipt.setSeats(seats);
+				double newTotal = receipt.calculateTotal();
+				receipt.setTotalPrice(newTotal);
+				// add seat back to list of available seats
+				SeatListModel.getInstance().addSeat(seat);
+			}	
+		}
 	}
 }

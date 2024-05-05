@@ -3,9 +3,9 @@ package model;
 public class PaymentInformation {
 
 	private int userID;
-	private int creditCardNo;
+	private Long creditCardNo;
 	
-	public PaymentInformation(int userID, int creditCardNo) {
+	public PaymentInformation(int userID, Long creditCardNo) {
 		super();
 		this.userID = userID;
 		this.creditCardNo = creditCardNo;
@@ -16,10 +16,10 @@ public class PaymentInformation {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-	public int getCreditCardNo() {
+	public Long getCreditCardNo() {
 		return creditCardNo;
 	}
-	public void setCreditCardNo(int creditCardNo) {
+	public void setCreditCardNo(Long creditCardNo) {
 		this.creditCardNo = creditCardNo;
 	}	
 	

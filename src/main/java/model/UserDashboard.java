@@ -1,9 +1,9 @@
 package model;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class UserDashboard {
-
     private static int userID;
     private static ArrayList<ReceiptInformation> purchaseHistory;
 
@@ -25,5 +25,4 @@ public class UserDashboard {
     public static void addReceipt(ReceiptInformation receipt) {
         purchaseHistory.add(receipt);
     }
-    
 }

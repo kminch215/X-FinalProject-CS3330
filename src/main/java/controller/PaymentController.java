@@ -10,6 +10,7 @@ import model.PaymentListModel;
 
 import model.ReceiptInformation;
 import model.SeatInformation;
+import model.SeatListModel;
 import model.UserDashboard;
 import view.PaymentView;
 
@@ -86,6 +87,11 @@ public class PaymentController {
         JOptionPane.showMessageDialog(null, "Payment Successful!");
         ReceiptInformation receipt = new ReceiptInformation(UserDashboard.getUserID(), seats.get(0).getFlightNumber(), seats);
         UserDashboard.addReceipt(receipt); //This is not adding the receipt to the receipt model
+        for(ReceiptInformation testReceipt : UserDashboard.getPurchaseHistory())
+        	System.out.println("Receipt: " + testReceipt.getTotalPrice());
+        for(SeatInformation seat : seats) {
+        	SeatListModel.removeSeat(seat);
+        }
         
         paymentView.setVisible(false);
         ReceiptController receiptController = new ReceiptController();

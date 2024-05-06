@@ -7,6 +7,11 @@ import model.UserInformation;
 import model.UserListModel;
 
 import javax.swing.*;
+
+import controller.FlightListController.ActionListenerSelectFlight;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class UserDashboardController {
@@ -17,42 +22,39 @@ public class UserDashboardController {
     public UserDashboardController() {
         this.dashboardView = new UserDashboardView(); 
         this.dashboardModel = new UserDashboard(UserDashboard.getUserID());
-        this.dashboardView.setVisible(true);
+		dashboardView.addActionListenerToBookMoreFlights(new ActionListenerBookMoreFlights());
+		dashboardView.addActionListenerDisplayReceipts(new ActionListenerReceiptInformation());
+		
+        dashboardView.setVisible(true);
     }
 
-    public void displayDashboard() {
-        loadUserData();
+    /**
+	 * Action listener for when the user clicks on the book more flight button in the dashboardView
+	 * 
+	 * @author Kendra Minch
+	 */
+	public class ActionListenerBookMoreFlights implements ActionListener {
 
-        // Display user dashboard
-        dashboardView.displayUserProfile(UserDashboard.getUserID());
-        dashboardView.displayCurrentTickets(dashboardModel.getCurrentTickets());
-        dashboardView.displayTicketHistory(dashboardModel.getTicketHistory());
-    }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dashboardView.setVisible(false);
+			FlightListController flightController = new FlightListController();
+		}
+		
+	}
+	
+	/**
+	 * Action listener for when the user clicks on view my receipts button
+	 * 
+	 * @author Kendra Minch
+	 */
+	public class ActionListenerReceiptInformation implements ActionListener {
 
-    private void loadUserData() {
-        ArrayList<ReceiptInformation> purchaseHistory = new ArrayList<>();
-        dashboardModel.setPurchaseHistory(purchaseHistory);
-    }
-
-    public void updateProfile(String firstName, String lastName, String email) {
-        // Update user profile information
-        for(UserInformation user : userListModel.getUserList()) {
-	        user.setFirstName(firstName);
-	        user.setLastName(lastName);
-	        user.setEmail(email);
-        }
-    }
-
-    public void viewTicketDetails(int ticketID) {
-        JOptionPane.showMessageDialog(null, "Ticket Details:\n" +
-                "Ticket ID: " + ticketID + "\n" +
-                "Flight Name: " + dashboardModel.getFlightName(ticketID) + "\n" +
-                "Price: " + dashboardModel.getFlightPrice(ticketID));
-    }
-
-    public void cancelTicket(int ticketID) {
-        dashboardModel.removeTicket(ticketID);
-        JOptionPane.showMessageDialog(null, "Ticket with ID " + ticketID + " cancelled successfully.");
-        displayDashboard();
-    }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dashboardView.setVisible(false);
+			ReceiptController receiptController = new ReceiptController();
+		}
+		
+	}
 }

@@ -127,25 +127,25 @@ class SeatSelectionTest {
 		assertEquals(5, FCSeat.getSeatNumber());
 	}
 	
-//	@Test
-//	public void testIntArrayToArrayList() {
-//		ArrayList<SeatInformation> seatList = new ArrayList<>();
-//		seatList.add(new EconomySeat(1, 1, 300.0));
-//		seatList.add(new EconomySeat(1, 4, 300.0));
-//		seatList.add(new FirstClassSeat(1, 3, 900.0));
-//		seatList.add(new EconomySeat(1, 2, 300.0));
-//		seatListModel.addSeat(new EconomySeat(1, 1, 300.0));
-//		seatListModel.addSeat(new EconomySeat(1, 4, 300.0));
-//		seatListModel.addSeat(new FirstClassSeat(1, 3, 900.0));
-//		seatListModel.addSeat(new EconomySeat(1, 2, 300.0));
-//
-//		int[] seats = {1,4};
-//		ArrayList<SeatInformation> expected = new ArrayList<>();
-//		expected.add(new EconomySeat(1, 1, 300.0));
-//		expected.add(new EconomySeat(1, 4, 300.0));
-//
-//		ArrayList<SeatInformation> actual = seatSelectionController.intArrayToArrayList(seats);
-//		assertEquals(expected, actual);
-//	}
+	@Test
+	public void testIntArrayToArrayList() {
+		ArrayList<SeatInformation> seatList = new ArrayList<>();
+		seatList.add(new EconomySeat(1, 1, 300.0));
+		seatList.add(new EconomySeat(1, 4, 300.0));
+		seatList.add(new FirstClassSeat(1, 3, 900.0));
+		seatList.add(new EconomySeat(1, 2, 300.0));
+		seatListModel.setSeatModel(seatList);
+
+		int[] seats = {1,4};
+
+		ArrayList<SeatInformation> actual = seatSelectionController.intArrayToArrayList(seats);
+		
+		// check that ArrayList is correct size
+		assertEquals(2, actual.size());
+		// check that first seat in ArrayList is seat number 1
+		assertEquals(1, actual.get(0).getSeatNumber());
+		// check that second seat in ArrayList is seat number 4
+		assertEquals(4, actual.get(1).getSeatNumber());
+	}
 
 }

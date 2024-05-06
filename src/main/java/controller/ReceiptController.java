@@ -94,4 +94,12 @@ public class ReceiptController {
 		}
 		
 	}
+
+	public ReceiptListModel getReceiptModel() {
+		return receiptModel;
+	}
+
+	public ReceiptView getReceiptView() {
+		return receiptView;
+	}
 }

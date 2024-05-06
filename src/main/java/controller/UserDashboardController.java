@@ -14,11 +14,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * @author Kendra Minch
+ */
 public class UserDashboardController {
     private UserDashboardView dashboardView;
     private UserDashboard dashboardModel;
     private UserListModel userListModel;
 
+    //deault constructor
     public UserDashboardController() {
         this.dashboardView = new UserDashboardView(); 
         this.dashboardModel = new UserDashboard(UserDashboard.getUserID());

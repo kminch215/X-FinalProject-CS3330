@@ -14,13 +14,21 @@ import model.SeatListModel;
 import model.UserDashboard;
 import view.PaymentView;
 
+/**
+ * Payment controller to handle the functionality between the view and the controller
+ */
 public class PaymentController {
 
     private PaymentView paymentView;
     private PaymentListModel paymentModel;
     private ArrayList<SeatInformation> seats;
-    
 
+    /**
+     * Constructor that takes in a seat list so that the payment controller knows how much the payment needs
+     * to be. Also sets up the model and the view along with setting the view to visible.
+     * 
+     * @param seats
+     */
     public PaymentController(ArrayList<SeatInformation> seats) {
         this.paymentView = new PaymentView();
         this.paymentModel = new PaymentListModel();
@@ -35,6 +43,10 @@ public class PaymentController {
         });
     }
 
+    /**
+     * This handles all the error handling for the payment process. Ensures that the credit card, CVV, and the 
+     * card expiration date is valid
+     */
     public void validateAndProcessPayment() {
         String cardNumber = paymentView.getCardNumberField().getText();
         String cvvNumber = paymentView.getCvvField().getText();
@@ -65,6 +77,7 @@ public class PaymentController {
         processPayment(cardNumber, cvvNumber, expirationMonth, expirationYear);
     }
 
+    //Methods that will check the strings to make sure they are valid
     private boolean isValidCardNumber(String cardNumber) {
         return cardNumber.matches("\\d{16}");
     }
@@ -81,14 +94,23 @@ public class PaymentController {
         return year.matches("^(1[9]|[2-9][0-9])$");
     }
 
+    /**
+     * This will finish processing the payment by creating new payment information, creating a receipt to be
+     * stored in the UserDashboard paymentHistory ArrayList. This method will also call the removeSeat method which
+     * will remove the seats that just were bought from the SeatListModel. Finally, it will remove the payment view
+     * and will display the receipt controller.
+     * 
+     * @param cardNumber
+     * @param cvvNumber
+     * @param expirationMonth
+     * @param expirationYear
+     */
     private void processPayment(String cardNumber, String cvvNumber, String expirationMonth, String expirationYear) {
     	PaymentInformation newPayment = new PaymentInformation(1, Long.parseLong(cardNumber));
     	paymentModel.getPaymentModel().add(newPayment);
         JOptionPane.showMessageDialog(null, "Payment Successful!");
         ReceiptInformation receipt = new ReceiptInformation(UserDashboard.getUserID(), seats.get(0).getFlightNumber(), seats);
         UserDashboard.addReceipt(receipt); //This is not adding the receipt to the receipt model
-        for(ReceiptInformation testReceipt : UserDashboard.getPurchaseHistory())
-        	System.out.println("Receipt: " + testReceipt.getTotalPrice());
         for(SeatInformation seat : seats) {
         	SeatListModel.removeSeat(seat);
         }
@@ -96,6 +118,7 @@ public class PaymentController {
         paymentView.setVisible(false);
         ReceiptController receiptController = new ReceiptController();
     }
+    
     //for later
     public String hash(String cardNumber) {
         if (cardNumber.length() >= 4) {

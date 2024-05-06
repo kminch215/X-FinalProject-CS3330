@@ -43,13 +43,8 @@ public class UserListModel {
                 return user; // If Successful
             }
         }
-        System.out.println("No User Found, here is a list of valid users:");
-        for(UserInformation i : this.userList){
-            System.out.println("-------------");
-            System.out.println("Username: " + i.getUsername());
-            System.out.println("Password:" + i.getPassword() );
-            System.out.println("-------------");
-        }
+        System.out.println("No User Found, please try again");
+
         return null; // If Fail
     }
 }

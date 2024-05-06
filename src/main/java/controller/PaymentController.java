@@ -34,7 +34,7 @@ public class PaymentController {
         });
     }
 
-    private void validateAndProcessPayment() {
+    public void validateAndProcessPayment() {
         String cardNumber = paymentView.getCardNumberField().getText();
         String cvvNumber = paymentView.getCvvField().getText();
         String expirationMonth = paymentView.getExpirationMonthField().getText();
@@ -101,4 +101,12 @@ public class PaymentController {
             return "Invalid card number";
         }
     }
+
+	public PaymentView getPaymentView() {
+		return paymentView;
+	}
+
+	public void setPaymentView(PaymentView paymentView) {
+		this.paymentView = paymentView;
+	}
 }

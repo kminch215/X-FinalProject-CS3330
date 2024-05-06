@@ -1,54 +1,47 @@
-package test;
-
-import controller.UserRegisterController;
-import org.junit.jupiter.api.Test;
+import model.UserInformation;
+import model.UserListModel;
 import view.UserRegisterView;
-
-import javax.swing.*;
+import controller.UserRegisterController;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import controller.UserRegisterController;
 
-public class UserRegistrationTest {
+public class UserRegisterTest {
 
     @Test
-    void testValidUserRegistration() {
-        UserRegisterView registerView = new UserRegisterView();
-        UserRegisterController controller = new UserRegisterController();
-
-        registerView.getUsernameField().setText("testuser");
-        registerView.getPasswordField().setText("password");
-        registerView.getFirstNameField().setText("John");
-        registerView.getLastNameField().setText("Doe");
-        registerView.getEmailField().setText("test@example.com");
-
-        controller.registerUser("testuser", "password", "John", "Doe", "test@example.com");
-
-        // Assert that user is registered successfully
-        JOptionPane pane = (JOptionPane) SwingUtilities.getAncestorOfClass(JOptionPane.class, registerView);
-        assertNotNull(pane);
-        assertEquals(JOptionPane.INFORMATION_MESSAGE, pane.getMessageType());
-        assertEquals("User registered successfully!", pane.getMessage());
+    public void testValidRegistration() {
+        UserRegisterController registerController = UserRegisterController.getInstance();
+        
+        // Perform a valid registration
+        registerController.registerUser("testuser", "password", "John", "Doe", "john.doe@example.com");
+        
+        // Assuming registration is successful, the user list should not be empty
+        assertFalse(registerController.getUserModel().getUserList().isEmpty());
     }
 
     @Test
-    void testEmptyFieldsUserRegistration() {
-        UserRegisterView registerView = new UserRegisterView();
-        UserRegisterController controller = new UserRegisterController();
-
-        registerView.getUsernameField().setText("");
-        registerView.getPasswordField().setText("");
-        registerView.getFirstNameField().setText("");
-        registerView.getLastNameField().setText("");
-        registerView.getEmailField().setText("");
-
-        controller.registerUser("", "", "", "", "");
-
-        // Assert that error message is displayed for empty fields
-        JOptionPane pane = (JOptionPane) SwingUtilities.getAncestorOfClass(JOptionPane.class, registerView);
-        assertNotNull(pane);
-        assertEquals(JOptionPane.ERROR_MESSAGE, pane.getMessageType());
-        assertEquals("Invalid input. Please fill all fields.", pane.getMessage());
+    public void testEmptyFields() {
+        UserRegisterController registerController = UserRegisterController.getInstance();
+        
+        // Perform registration with empty fields
+        registerController.registerUser("", "", "", "", "");
+        
+        // The user list should remain empty as the registration should fail due to empty fields
+        assertTrue(registerController.getUserModel().getUserList().isEmpty());
     }
 
-    // Add more test cases for invalid input data
+    @Test
+    public void testDuplicateUsername() {
+        UserRegisterController registerController = UserRegisterController.getInstance();
+        
+        // Register a user with a specific username
+        registerController.registerUser("testuser", "password", "John", "Doe", "john.doe@example.com");
+        
+        // Attempt to register another user with the same username
+        registerController.registerUser("testuser", "password123", "Jane", "Doe", "jane.doe@example.com");
+        
+        // The user list size should be 1 since the second registration should fail due to duplicate username
+        assertEquals(1, registerController.getUserModel().getUserList().size());
+    }
 }

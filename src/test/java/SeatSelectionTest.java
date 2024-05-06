@@ -111,6 +111,22 @@ class SeatSelectionTest {
 
 	}
 	
+	@Test
+	public void testSetFlightNumber() {
+		FirstClassSeat FCSeat = new FirstClassSeat(1, 10, 900.00);
+		FCSeat.setFlightNumber(2);
+		
+		assertEquals(2, FCSeat.getFlightNumber());
+	}
+	
+	@Test
+	public void testSetSeatNumber() {
+		FirstClassSeat FCSeat = new FirstClassSeat(1, 10, 900.00);
+		FCSeat.setSeatNumber(5);
+		
+		assertEquals(5, FCSeat.getSeatNumber());
+	}
+	
 //	@Test
 //	public void testIntArrayToArrayList() {
 //		ArrayList<SeatInformation> seatList = new ArrayList<>();

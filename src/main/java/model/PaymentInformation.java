@@ -16,7 +16,7 @@ public class PaymentInformation {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-public Long getCreditCardNo() {
+	public Long getCreditCardNo() {
 		return creditCardNo;
 	}
 	public void setCreditCardNo(Long creditCardNo) {

@@ -6,20 +6,45 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The FlightListModel class is a model class that will store the data needed to be manipulated by the 
+ * FlightListController and displayed to the user using the FlightListView.
+ * 
+ * @author Kendra Minch
+ */
 public class FlightListModel {
 
 	private ArrayList<FlightInformation> flightModel;
 	private final static String flightInformationFile = "flightInformationFile.csv";
 
+
+	/**
+    * Constructs a new FlightListModel with an empty list of flights.
+    * 
+    * @author Kendra Minch
+    */
 	public FlightListModel() {
 		super();
 		this.flightModel = new ArrayList<FlightInformation>();
 	}
 
+	/**
+	 * Retrieves the list of flights.
+	 *
+	 * @return The list of flights.
+	 * @author Kendra Minch
+	 */
 	public ArrayList<FlightInformation> getFlightModel() {
 		return flightModel;
 	}
 	
+
+    /**
+     * Initializes the list of flights by reading data from a CSV file.
+     *
+     * @return true if initialization is successful, false otherwise.
+     * @author Kendra Minch
+     */
 	public boolean initializeFlights() {
 		FlightInformation flight = null;
     	try {
@@ -27,13 +52,14 @@ public class FlightListModel {
 	        Scanner scanner = new Scanner(file);
             // Skip the header if present
 	        if (scanner.hasNextLine()) {
-	            scanner.nextLine(); // Assuming the first line is a header, if not remove this line
+	            scanner.nextLine();
 	        }
 
 	        // Read the data
 	        while (scanner.hasNextLine()) {
 	            String line = scanner.nextLine();
-	            String[] parts = line.split(","); // Assuming the CSV is comma-separated
+	            //split it with commas because it is a CSV
+	            String[] parts = line.split(",");
 
 	            // Access each part of the CSV row
 	            int flightNumber = Integer.parseInt(parts[0]);
@@ -41,20 +67,25 @@ public class FlightListModel {
 	            String arrivalLocation = parts[2];
 	            Date date = Date.valueOf(parts[3]);
 	            
-	            // Do something with the data, for example, print it
 	            System.out.println("FlightNumber: " + flightNumber + ", Departure: " + departureLocation + ", Arrival: " + arrivalLocation + ", Date: " + date);
 	            
+	            //initialize the new flight object with the data that is read
 	            flight = new FlightInformation(flightNumber, departureLocation, arrivalLocation, date);
 	            
+	            //add the flight just initialized to the flightModel
 	            flightModel.add(flight);
 	        }
+	        //close the scanner
 	        scanner.close();
+	        //if the file is not thrown then catch the exception
 	    } catch (FileNotFoundException e) {
 	        System.out.println("File not found: " + flightInformationFile);
 	        e.printStackTrace();
+	        //returns false if the file could not have been read
 	        return false;
 	    }
     	
+    	//return true when the file has been read
     	return true;
 	}
 	

@@ -11,15 +11,22 @@ public class FlightListModel {
 	private ArrayList<FlightInformation> flightModel;
 	private final static String flightInformationFile = "flightInformationFile.csv";
 
+	//default constructor
 	public FlightListModel() {
 		super();
 		this.flightModel = new ArrayList<FlightInformation>();
 	}
 
+	//getter for the flight model
 	public ArrayList<FlightInformation> getFlightModel() {
 		return flightModel;
 	}
 	
+	/**
+	 * Method used to initialize the flights from a CSV file. 
+	 * 
+	 * @return true if the file was read correctly, false if the file was not read correctly
+	 */
 	public boolean initializeFlights() {
 		FlightInformation flight = null;
     	try {

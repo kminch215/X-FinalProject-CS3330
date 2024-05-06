@@ -85,7 +85,7 @@ public class PaymentController {
     	paymentModel.getPaymentModel().add(newPayment);
         JOptionPane.showMessageDialog(null, "Payment Successful!");
         ReceiptInformation receipt = new ReceiptInformation(UserDashboard.getUserID(), seats.get(0).getFlightNumber(), seats);
-        UserDashboard.addReceipt(receipt); //This is not adding the receipe to the receipt model
+        UserDashboard.addReceipt(receipt); //This is not adding the receipt to the receipt model
         
         paymentView.setVisible(false);
         ReceiptController receiptController = new ReceiptController();

@@ -31,6 +31,9 @@ public class UserRegisterController {
         return instance;
     }
 
+    public UserListModel getUserModel() {
+        return userModel;
+    }
     
     public void registerUser(String username, String password, String firstName, String lastName, String email) {
 

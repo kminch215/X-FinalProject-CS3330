@@ -8,8 +8,6 @@ import controller.UserLoginController;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-//TODO: Add current user into dashboard
-
 
 public class UserLoginController {
     private UserLoginView loginView;

@@ -1,13 +1,30 @@
 import model.UserInformation;
 import model.UserListModel;
 import view.UserRegisterView;
+import controller.UserLoginController;
 import controller.UserRegisterController;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import controller.UserRegisterController;
 
 public class UserRegisterTest {
+    private UserListModel userListModel;
+    private UserRegisterController userRegisterController;
+
+    @BeforeEach
+    public void setUp() {
+        // Initialize UserListModel and UserLoginController before each test
+        userListModel = new UserListModel();
+        userRegisterController = new UserRegisterController();
+    }
+    
+    @Test
+    public void testInitialization() {
+        assertNotNull(userRegisterController);
+    }
 
     @Test
     public void testValidRegistration() {

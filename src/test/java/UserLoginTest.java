@@ -4,17 +4,24 @@ import controller.UserLoginController;
 
 import org.junit.*;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class UserLoginTest {
     private UserListModel userListModel;
     private UserLoginController userLoginController;
 
-
+    @BeforeEach
     public void setUp() {
         // Initialize UserListModel and UserLoginController before each test
         userListModel = new UserListModel();
         userLoginController = new UserLoginController(userListModel);
+    }
+    
+    @Test
+    public void testInitialization() {
+        assertNotNull(userLoginController);
     }
 
     @Test

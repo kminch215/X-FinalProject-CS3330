@@ -32,13 +32,17 @@ public class UserDashboardView extends JFrame {
 		myReceiptsButton.setBounds(306, 118, 136, 48);
 		contentPanel.add(myReceiptsButton);
 		
-		bookAnotherFlight = new JButton("Book another flight");
+		bookAnotherFlight = new JButton("Book flight");
 		bookAnotherFlight.setBounds(71, 118, 155, 48);
 		contentPanel.add(bookAnotherFlight);
 		
 		userIDLabel = new JLabel("");
 		userIDLabel.setBounds(186, 40, 120, 26);
 		contentPanel.add(userIDLabel);
+    }
+    
+    public void setUserIDLabel(String label) {
+    	this.userIDLabel.setText(label);
     }
     
     public void addActionListenerToBookMoreFlights(ActionListener listener) {

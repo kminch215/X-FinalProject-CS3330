@@ -24,6 +24,7 @@ public class UserDashboardController {
         this.dashboardModel = new UserDashboard(UserDashboard.getUserID());
 		dashboardView.addActionListenerToBookMoreFlights(new ActionListenerBookMoreFlights());
 		dashboardView.addActionListenerDisplayReceipts(new ActionListenerReceiptInformation());
+		dashboardView.setUserIDLabel("Customer ID: " + UserDashboard.getUserID());
 		
         dashboardView.setVisible(true);
     }

@@ -36,8 +36,9 @@ public class UserLoginController {
                 //Hide Login View -> User Dashboard 
                 loginView.setVisible(false);    
     
-                //UserDashboardController userDashboardController = new UserDashboardController(user);
-                FlightListController flightController = new FlightListController();
+                UserDashboardController userDashboardController = new UserDashboardController();
+//                FlightListController flightController = new FlightListController();
+                
 
                 JOptionPane.showMessageDialog(null, "Login successful.");
             } else {

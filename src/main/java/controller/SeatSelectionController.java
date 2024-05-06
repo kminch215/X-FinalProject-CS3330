@@ -94,7 +94,7 @@ public class SeatSelectionController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			FlightListController flightListController = new FlightListController();
-			flightListController.initiate();
+//			flightListController.initiate();
 			System.out.println("Returning to Flight View...");
 			seatView.setVisible(false);
 		}	

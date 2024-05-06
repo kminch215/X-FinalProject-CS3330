@@ -30,7 +30,7 @@ public class FlightInformation {
 		this.arrivalLocation = arrivalLocation;
 		this.date = date;
 	}
-	
+
 	/**
 	 * Getter for the flight number
 	 * 

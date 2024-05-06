@@ -35,6 +35,7 @@ public class SeatListModel {
 	public void setSeatModel(ArrayList<SeatInformation> seatModel) {
 		this.seatModel = seatModel;
 	}
+
 	/**
 	 * This method initializes the seats by reading them in from the provided file and creating a new seat 
 	 * depending on whether the seat is of type Economy or First Class.
@@ -89,18 +90,6 @@ public class SeatListModel {
 	public boolean addSeat(SeatInformation seat) {
 		if(!seatModel.contains(seat)) {
 			seatModel.add(seat);
-			return true;
-		}
-		return false;
-	}
-	/**
-	 * This method removes the provided seat from the ArrayList of available seats.
-	 * @param seat
-	 * @return boolean
-	 */
-	public boolean removeSeat(SeatInformation seat) {
-		if(!seatModel.contains(seat)) {
-			seatModel.remove(seat);
 			return true;
 		}
 		return false;

@@ -10,7 +10,6 @@ public class ReceiptInformation {
 	private ArrayList<SeatInformation> seats;
 	private double totalPrice;
 	
-	//change this so that the orderTotal is calculated from the ArrayList
 	public ReceiptInformation(int userID, int flightNumber, ArrayList<SeatInformation> seats) {
 		super();
 		this.receiptID = receiptID++;
@@ -33,9 +32,6 @@ public class ReceiptInformation {
 	}
 	public int getFlightNumber() {
 		return flightNumber;
-	}
-	public void setFlightNumber(int flightNumber) {
-		this.flightNumber = flightNumber;
 	}
 	public ArrayList<SeatInformation> getSeats() {
 		return seats;

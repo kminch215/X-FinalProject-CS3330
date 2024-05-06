@@ -17,6 +17,7 @@ public class FlightListModel {
 	private ArrayList<FlightInformation> flightModel;
 	private final static String flightInformationFile = "flightInformationFile.csv";
 
+
 	/**
     * Constructs a new FlightListModel with an empty list of flights.
     * 
@@ -37,6 +38,7 @@ public class FlightListModel {
 		return flightModel;
 	}
 	
+
     /**
      * Initializes the list of flights by reading data from a CSV file.
      *

@@ -23,6 +23,6 @@ public abstract class SeatInformation {
 		this.seatNumber = seatNumber;
 	}
 	
-	abstract void seatDescription();
+	public abstract String seatDescription();
 
 }

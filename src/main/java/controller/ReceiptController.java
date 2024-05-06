@@ -36,6 +36,12 @@ public class ReceiptController {
 		}
 	}
 	
+	/**
+	 * @author Samantha Whitaker
+	 * This method takes a user's receipt and cancels the booking by adding the seats the available seats list
+	 * and zeroing out the total payment amount of that receipt.
+	 * @param receipt
+	 */
 	public void cancelBooking(ReceiptInformation receipt) {
 		if(receiptModel.getReceiptList().contains(receipt)) {
 			ArrayList<SeatInformation> seats = receipt.getSeats();
@@ -46,6 +52,11 @@ public class ReceiptController {
 		}
 	}
 	
+	/**
+	 * @author Samantha Whitaker
+	 * This method allows a user to book an additional seat.
+	 * @param receipt
+	 */
 	public void bookAdditionalSeat(ReceiptInformation receipt) {
 		int flightNo = receipt.getFlightNumber();
 		SeatSelectionController seatController = new SeatSelectionController(flightNo);
@@ -53,6 +64,13 @@ public class ReceiptController {
 		
 	}
 	
+	/**
+	 * @author Samantha Whitaker
+	 * This method cancels the passed seat by removing it from the receipt, calculating and saving the new total price, 
+	 * and adding the seat back to the list of available seats. 
+	 * @param receipt
+	 * @param seat
+	 */
 	public void cancelSelectedSeat(ReceiptInformation receipt, SeatInformation seat) {
 		if(receiptModel.getReceiptList().contains(receipt)) {
 			ArrayList<SeatInformation> seats = receipt.getSeats();
@@ -75,5 +93,13 @@ public class ReceiptController {
 			UserDashboardController userDashboardController = new UserDashboardController();
 		}
 		
+	}
+
+	public ReceiptListModel getReceiptModel() {
+		return receiptModel;
+	}
+
+	public ReceiptView getReceiptView() {
+		return receiptView;
 	}
 }

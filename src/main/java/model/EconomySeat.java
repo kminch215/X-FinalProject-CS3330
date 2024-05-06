@@ -18,9 +18,9 @@ public class EconomySeat extends SeatInformation{
 	}
 
 	@Override
-	void seatDescription() {
-		// TODO Auto-generated method stub
-		
+	public String seatDescription() {
+		String description = "This is an Economy Seat";
+		return description;
 	}
 
 }

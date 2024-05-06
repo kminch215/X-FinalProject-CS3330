@@ -1,23 +1,57 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import controller.PaymentController;
-import view.PaymentView;
+import model.PaymentListModel;
+import model.PaymentInformation;
 
 class PaymentTest {
 
-	@BeforeEach
-    void setUp() throws Exception {
-    	new PaymentController(null);
-    	new PaymentView();    }
-    
-    @Test
-    private static void simulateUserInput(PaymentController paymentController) {
-    	// Simulating user input for testing
-            String cardNumber = "1234123412345678";
-            String cvv = "123";
-            String expirationMonth = "12";
-            String expirationYear = "21";
+    private static PaymentController paymentController;
 
-            paymentController.processPayment(cardNumber, cvv, expirationMonth, expirationYear);
+    @BeforeEach
+    public void setUp() {
+        paymentController = new PaymentController(null);
+    }
+
+    @Test
+    public void testInitialization() {
+        assertNotNull(paymentController);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideInputsForTestProcessPayment")
+    public void testProcessPayment(String expectedCardNumber, String expectedCVV, String expectedExpirationMonth, String expectedExpirationYear) {
+        PaymentListModel paymentListModel = new PaymentListModel();
+        paymentController.processPayment(expectedCardNumber, expectedCVV, expectedExpirationMonth, expectedExpirationYear);
+        PaymentInformation paymentInformation = new PaymentInformation(0, null);
+        // Retrieve the values stored in PaymentInformation
+        String actualCardNumber = paymentInformation.getCardNumber();
+        String actualCVV = paymentInformation.getCvvNumber();
+        String actualExpirationMonth = paymentInformation.getExpirationMonth();
+        String actualExpirationYear = paymentInformation.getExpirationYear();
+
+        // Assert expected values against actual values
+        assertEquals(expectedCardNumber, actualCardNumber);
+        assertEquals(expectedCVV, actualCVV);
+        assertEquals(expectedExpirationMonth, actualExpirationMonth);
+        assertEquals(expectedExpirationYear, actualExpirationYear);
+    }
+
+    private static Stream<Arguments> provideInputsForTestProcessPayment() {
+        return Stream.of(
+                Arguments.of("1234567890123456", "123", "12", "25"),
+                Arguments.of("9876543210987654", "456", "11", "24"),
+                Arguments.of("3210123456789109", "789", "10", "22")
+        );
     }
 }

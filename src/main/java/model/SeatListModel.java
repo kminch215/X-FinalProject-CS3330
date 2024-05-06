@@ -95,4 +95,21 @@ public class SeatListModel {
 		return false;
 	}
 	
+	
+	/**
+	 * This method will remove the seat passed to it from the instance of seatModel
+	 * @param seat
+	 * @return true if the removal was successful, false if it wasn't
+	 * @author Kendra Minch
+	 */
+	static public boolean removeSeat(SeatInformation seatToRemove) {
+		for(int i = 0; i < getInstance().getSeatModel().size()-1; i++) {
+			if(getInstance().getSeatModel().get(i).equals(seatToRemove))
+			{
+				getInstance().getSeatModel().remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
 }

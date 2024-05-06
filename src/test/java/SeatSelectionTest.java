@@ -1,6 +1,5 @@
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 
 import javax.swing.JTable;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import controller.SeatSelectionController;
 import model.EconomySeat;
+import model.FirstClassSeat;
 import model.SeatInformation;
 import model.SeatListModel;
 import view.SeatSelectionView;
@@ -18,6 +18,7 @@ import view.SeatSelectionView;
 class SeatSelectionTest {
 	private SeatSelectionController seatSelectionController;
 	private SeatSelectionView seatSelectionView;
+	private SeatListModel seatListModel;
 	private JTable seatTable;
 	private DefaultTableModel model;
 
@@ -26,6 +27,7 @@ class SeatSelectionTest {
 		seatSelectionController = new SeatSelectionController(2);
 		seatSelectionView = new SeatSelectionView();
 		seatTable = seatSelectionView.getSeatTable();
+		seatListModel = SeatListModel.getInstance();
 		model = seatSelectionView.getModel();
 		model.setRowCount(6);
 		Object[][] rowData = {
@@ -81,7 +83,53 @@ class SeatSelectionTest {
 		
 		// tests if existingSeat was NOT successfully added to seatList
 		assertEquals(initialSize, SeatListModel.getInstance().getSeatModel().size());
+	}
+	
+	@Test
+	public void testSetEconomySeatPrice() {
+		EconomySeat econSeat = new EconomySeat(1, 10, 200.00);
+		econSeat.setSeatPrice(300.00);
+		
+		assertEquals(300.00, econSeat.getSeatPrice());
+	}
+	
+	@Test
+	public void testSetFirstClassSeatPrice() {
+		FirstClassSeat FCSeat = new FirstClassSeat(1, 10, 900.00);
+		FCSeat.setSeatPrice(1000.00);
+		
+		assertEquals(1000.00, FCSeat.getSeatPrice());
+	}
+	
+	@Test
+	public void testSeatDescription() {
+		SeatInformation seat = new EconomySeat(1, 10, 200.00);
+		SeatInformation seat1 = new FirstClassSeat(1, 10, 900.00);
+
+		assertEquals("This is an Economy Seat", seat.seatDescription());
+		assertEquals("This is a First Class Seat", seat1.seatDescription());
 
 	}
+	
+//	@Test
+//	public void testIntArrayToArrayList() {
+//		ArrayList<SeatInformation> seatList = new ArrayList<>();
+//		seatList.add(new EconomySeat(1, 1, 300.0));
+//		seatList.add(new EconomySeat(1, 4, 300.0));
+//		seatList.add(new FirstClassSeat(1, 3, 900.0));
+//		seatList.add(new EconomySeat(1, 2, 300.0));
+//		seatListModel.addSeat(new EconomySeat(1, 1, 300.0));
+//		seatListModel.addSeat(new EconomySeat(1, 4, 300.0));
+//		seatListModel.addSeat(new FirstClassSeat(1, 3, 900.0));
+//		seatListModel.addSeat(new EconomySeat(1, 2, 300.0));
+//
+//		int[] seats = {1,4};
+//		ArrayList<SeatInformation> expected = new ArrayList<>();
+//		expected.add(new EconomySeat(1, 1, 300.0));
+//		expected.add(new EconomySeat(1, 4, 300.0));
+//
+//		ArrayList<SeatInformation> actual = seatSelectionController.intArrayToArrayList(seats);
+//		assertEquals(expected, actual);
+//	}
 
 }

@@ -19,8 +19,9 @@ public class FirstClassSeat extends SeatInformation {
 	}
 
 	@Override
-	void seatDescription() {
-		
+	public String seatDescription() {
+		String description = "This is a First Class Seat";
+		return description;
 		
 	}
 

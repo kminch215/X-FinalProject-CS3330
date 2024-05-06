@@ -45,6 +45,12 @@ public class SeatSelectionController {
 		}
 	}
 	
+	/**
+	 * This method takes an int[] of user-selected seats and converts it into an ArrayList of type SeatInformation
+	 * to be used in other methods.
+	 * @param seats
+	 * @return
+	 */
 	public ArrayList<SeatInformation> intArrayToArrayList(int[] seats){
 		ArrayList<SeatInformation> convertedSeats = new ArrayList<>();
 		ArrayList<SeatInformation> seatList = seatModel.getSeatModel();

@@ -66,9 +66,7 @@ public class FlightListModel {
 	            String departureLocation = parts[1];
 	            String arrivalLocation = parts[2];
 	            Date date = Date.valueOf(parts[3]);
-	            
-	            System.out.println("FlightNumber: " + flightNumber + ", Departure: " + departureLocation + ", Arrival: " + arrivalLocation + ", Date: " + date);
-	            
+	            	            
 	            //initialize the new flight object with the data that is read
 	            flight = new FlightInformation(flightNumber, departureLocation, arrivalLocation, date);
 	            

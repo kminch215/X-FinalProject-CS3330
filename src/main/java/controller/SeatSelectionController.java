@@ -81,12 +81,7 @@ public class SeatSelectionController {
 			}
 			ArrayList<SeatInformation> seats = intArrayToArrayList(selectedSeats);
 			PaymentController paymentController = new PaymentController(seats);
-			System.out.println("Selected Seat(s): ");
-			for(int seatNumber : selectedSeats)
-			{
-				System.out.println(seatNumber);
-			}
-			System.out.println("Moving to payment view...");
+			
 			seatView.setVisible(false);
 		}	
 	}

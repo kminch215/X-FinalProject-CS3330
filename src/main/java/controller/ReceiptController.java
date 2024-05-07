@@ -36,7 +36,6 @@ public class ReceiptController {
 	 * @author Kendra Minch
 	 */
 	public void displayReceipts() {
-		System.out.println("UserID " + UserDashboard.getUserID());
 		for(ReceiptInformation receipt : UserDashboard.getPurchaseHistory()) {
 			receiptView.getReceiptList().addElement(receipt);
 		}

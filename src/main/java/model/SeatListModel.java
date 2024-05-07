@@ -71,9 +71,7 @@ public class SeatListModel {
 	            else if(seatClass == 2) {
 	            	seat = new EconomySeat(flightNumber, seatNumber, 300.00);
 	            }
-	            
-            	System.out.println("FlightNumber: " + flightNumber + ", SeatNumber: " + seatNumber);
-	            	            
+	            	            	            
 	            seatModel.add(seat); 
 	        }
 	        scanner.close();

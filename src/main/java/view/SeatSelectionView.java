@@ -30,7 +30,6 @@ public class SeatSelectionView extends JFrame{
 	private JTable seatTable;
 	private JButton selectSeat;
 	private JButton backButton;
-	private ArrayList<Integer> selectedSeatNumbers;
 
 	public SeatSelectionView() {
 		setTitle("Selection View");
@@ -64,8 +63,6 @@ public class SeatSelectionView extends JFrame{
          centerRenderer.setHorizontalAlignment(JLabel.CENTER);
          seatTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
       
-
-         selectedSeatNumbers = new ArrayList<>();
          selectSeat = new JButton("Select Seat");
          selectSeat.setLocation(0, 333);
          selectSeat.setSize(484, 30);
@@ -82,7 +79,6 @@ public class SeatSelectionView extends JFrame{
          contentPanel.add(scrollPane);
          contentPanel.add(selectSeat);
          contentPanel.add(backButton);
-         
 	}
   
 	/**

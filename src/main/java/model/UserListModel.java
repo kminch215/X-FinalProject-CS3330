@@ -3,28 +3,28 @@ package model;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * Uses to maintain a list of the registered users
+ */
 public class UserListModel {
     private static ArrayList<UserInformation> userList;
 
+    //default constructor
     public UserListModel() {
         UserListModel.userList = new ArrayList<>();
     }
 
+    //getter for the user list
     public ArrayList<UserInformation> getUserList() {
         return userList;
     }
 
-//    public void setUserList(ArrayList<UserInformation> userList) {
-//        this.userList = userList;
-//    }
-
+    //saves the user to the userList
     public void saveUser(UserInformation user) {
-        System.out.println("Saving New User!");
-
-        System.out.println("Location 3" + user.getPassword());
         userList.add(user);
     }
 
+    //getter for the user based on the username
     public UserInformation getUserByUsername(String username) {
         for (UserInformation user : userList) {
             if (user.getUsername().equals(username)) {
@@ -34,10 +34,13 @@ public class UserListModel {
         return null;
     }
 
+    /**
+     * Will check if the user us authorized or not
+     * @param username
+     * @param password
+     * @return if the user is valid, it will return the UserInformation, and if it is not valid, return null
+     */
     public UserInformation authenticateUser(String username, String password) {
-        System.out.println("Checkibng to see if user exists...");
-        System.out.println(username);
-        System.out.println(password);
         for (UserInformation user : this.userList) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user; // If Successful

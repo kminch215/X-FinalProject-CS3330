@@ -40,7 +40,11 @@ public class FlightListView extends JFrame {
     private JComboBox<String> arrivalDropDown;
     private JButton filterButton;
 
-	
+	/**
+	 * Constuctor to set the view for the Flight List View
+	 * 
+	 * @author Kendra Minch
+	 */
 	public FlightListView() {
 		setTitle("Flight List View");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,20 +67,25 @@ public class FlightListView extends JFrame {
         filterFlights.setBounds(20, 31, 60, 20);
         flightSelectorLabel.setFont(new Font("Sitka Heading", Font.BOLD, 10));
         
+        //label for the filter of departure
         departureLabel = new JLabel("Departure");
         departureLabel.setFont(new Font("Sitka Small", Font.BOLD, 7));
         departureLabel.setBounds(90, 31, 48, 18);
         
+        //departure filter drop down
         departureDropDown = new JComboBox<>();
         departureDropDown.setBounds(134, 29, 73, 20);
         
+        //label for the filter of arrival
         arrivalLabel = new JLabel("Arrival");
         arrivalLabel.setFont(new Font("Sitka Small", Font.BOLD, 7));
         arrivalLabel.setBounds(217, 31, 35, 18);
         
+        //arrival filter drop down
         arrivalDropDown = new JComboBox<>();
         arrivalDropDown.setBounds(245, 29, 73, 20);
         
+        //button to filter the specifications
         filterButton = new JButton("Filter");
         filterButton.setBounds(368, 31, 73, 20);
 		
@@ -113,42 +122,85 @@ public class FlightListView extends JFrame {
         contentPanel.add(selectFlight);
 	}
 	
+	/**
+	 * This method is used to add elements to the departure filter
+	 * @param departure
+	 * @author Kendra Minch
+	 */
 	public void addDepartureFilterItems(String departure) {
 		departureDropDown.addItem(departure);
 	}
 	
+	/**
+	 * This method is used to add elements to the arrival filter
+	 * @param arrival
+	 * @author Kendra Minch
+	 */
 	public void addArrivalFilterItems(String arrival) {
 		arrivalDropDown.addItem(arrival);
 	}
 	
+	/**
+	 * Adding a flight to the table
+	 * @param flight
+	 * @author Kendra Minch
+	 */
 	public void addFlightInformationToView(FlightInformation flight) {
 		model.addRow(new Object[] {flight.getFlightNumber(), flight.getDepartureLocation(), flight.getArrivalLocation()});
 	}
 	
+	/**
+	 * Adds an action listener for the selectFlight button 
+	 * @param listener
+	 * @author Kendra Minch
+	 */
 	public void addActionListenerToSelectFlightButton(ActionListener listener) {
 		selectFlight.addActionListener(listener);
 	}
 	
+	/**
+	 * Adds an action listener for the filterButton button 
+	 * @param listener
+	 * @author Kendra Minch
+	 */
 	public void addActionListenerToFilterButton(ActionListener listener) {
 		filterButton.addActionListener(listener);
 	}
 	
+	/**
+	 * Will get the index that is selected in the flightTable
+	 * @return integer representing the flight selected
+	 * @author Kendra Minch
+	 */
 	public int getSelectedFlightNumber() {
 		int rowNumber = flightTable.getSelectedRow();
 		return (int) model.getValueAt(rowNumber, 0);
 	}
 	
+	/**
+	 * Will clear the flight table
+	 */
 	public void clearFlightTable() {
 		model.setRowCount(0);
 		return;
 	}
 	
+	/**
+	 * Getter to retrieve what item is selected in the departure drop down
+	 * @return string of the selected item
+	 * @author Kendra Minch
+	 */
 	public String getSelectedDeparture() {
 		if(departureDropDown.getSelectedIndex() != -1)
 			return (String)departureDropDown.getSelectedItem();
 		return "no selection";
 	}
 	
+	/**
+	 * Getter to retrieve what item is selected in the arrival drop down
+	 * @return string of the selected item
+	 * @author Kendra Minch
+	 */
 	public String getSelectedArrival() {
 		if(arrivalDropDown.getSelectedIndex() != -1)
 			return (String)arrivalDropDown.getSelectedItem();

@@ -148,7 +148,6 @@ public class FlightListController {
 			}
 			//if so, initialize the SeatSelectionController and then set the flightView to invisible
 			SeatSelectionController seatController = new SeatSelectionController(flightView.getSelectedFlightNumber());
-			System.out.println("Moving to seat view for: " + flightView.getSelectedFlightNumber());
 			flightView.setVisible(false);
 		}
 		

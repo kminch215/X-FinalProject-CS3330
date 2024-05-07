@@ -30,10 +30,13 @@ public class ReceiptController {
 		receiptView.setVisible(true);
 	}
 	
+	/**
+	 * This will display all the receipts that the user has in the receiptView 
+	 * 
+	 * @author Kendra Minch
+	 */
 	public void displayReceipts() {
-		System.out.println("UserID " + UserDashboard.getUserID());
 		for(ReceiptInformation receipt : UserDashboard.getPurchaseHistory()) {
-			System.out.println("Receipt: " + receipt.calculateTotal());
 			receiptView.getReceiptList().addElement(receipt);
 		}
 	}
@@ -87,6 +90,12 @@ public class ReceiptController {
 		}
 	}
 	
+	/**
+	 * Action listener that takes the user to the User Dashboard whenever the they click the "To User Dashboard" 
+	 * button.
+	 * 
+	 * @author Kendra Minch
+	 */
 	public class ActionListenerToUserDashboard implements ActionListener {
 
 		@Override
@@ -97,6 +106,7 @@ public class ReceiptController {
 		
 	}
 
+	//getters for the receipt model
 	public ReceiptListModel getReceiptModel() {
 		return receiptModel;
 	}

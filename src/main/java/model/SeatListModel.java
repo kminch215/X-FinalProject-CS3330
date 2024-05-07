@@ -9,13 +9,13 @@ import java.util.Scanner;
  * This class uses a Singleton design pattern to allow access to the list of available seats.
  * @author Samantha Whitaker
  */
-
 public class SeatListModel {
 
 	private final static String seatInformationFile = "seatInformationFile.csv";	
 	private static SeatListModel mInstance;
     private ArrayList<SeatInformation> seatModel = null;
 	
+    //singleton instance
 	public static SeatListModel getInstance() {
         if(mInstance == null)
             mInstance = new SeatListModel();
@@ -23,15 +23,18 @@ public class SeatListModel {
         return mInstance;
     }
 	
+	//private default constructor
 	 private SeatListModel() {
 		seatModel = new ArrayList<SeatInformation>();
 		initializeSeats();
       }
 
+	 //getter for the seat model
 	public ArrayList<SeatInformation> getSeatModel() {
 		return seatModel;
 	}
 
+	//setter for the seat model
 	public void setSeatModel(ArrayList<SeatInformation> seatModel) {
 		this.seatModel = seatModel;
 	}
@@ -40,6 +43,7 @@ public class SeatListModel {
 	 * This method initializes the seats by reading them in from the provided file and creating a new seat 
 	 * depending on whether the seat is of type Economy or First Class.
 	 * @return boolean
+	 * @author Samantha Whitaker
 	 */
 	public boolean initializeSeats() {
 		SeatInformation seat = null;
@@ -67,9 +71,7 @@ public class SeatListModel {
 	            else if(seatClass == 2) {
 	            	seat = new EconomySeat(flightNumber, seatNumber, 300.00);
 	            }
-	            
-            	System.out.println("FlightNumber: " + flightNumber + ", SeatNumber: " + seatNumber);
-	            	            
+	            	            	            
 	            seatModel.add(seat); 
 	        }
 	        scanner.close();
@@ -86,6 +88,7 @@ public class SeatListModel {
 	 * This method adds the provided seat to the ArrayList of available seats.
 	 * @param seat
 	 * @return boolean
+	 * @author Samantha Whitaker
 	 */
 	public boolean addSeat(SeatInformation seat) {
 		if(!seatModel.contains(seat)) {
